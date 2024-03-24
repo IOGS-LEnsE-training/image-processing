@@ -1,3 +1,17 @@
+.. raw:: html
+
+    <style>
+        .darkorange {color:darkorange; font-weight:bold;}
+        .red {color:red; font-weight:bold;}
+        .green {color:green; font-weight:bold;}
+        .blue {color:blue; font-weight:bold;}
+    </style>
+
+.. role:: darkorange
+.. role:: red
+.. role:: green
+.. role:: blue
+
 Digital Images
 ##############
 
@@ -64,8 +78,28 @@ When a computer displays an image, it reads the information stored for each pixe
 
 In an image processing procedure, one of the most frequently used methods is to store the pixels in an **2- or 3-D arrays**, depending on the color space used and how the pixel information is stored (one number for the color or separated number for each component of the color).
 
+.. figure:: ../_static/images/images_array_gray_rgb.png
+	:align: center
+	
+	Array representation of a grayscale image (left side) or RGB color space image (right side).
+
+Accessing a pixel information requires to know the coordinates of it, i.e. the **row** and the **column** numbers. 
+
+Grayscale mode
+--------------
+
+In the grayscale mode, a pixel represents a **grayscale level** through a numerical value. 
+
+The most frequently used pixel depth for grayscale is **8-bits**, meaning that each grayscale value is coded on a **8-bits unsigned integer**. There are :math:`2^{8}` different levels.  A value of 0 corresponds to the black color, while the value 255 (:math:`2^{8} - 1`) corresponds to white color.
+
+RGB mode
+--------
+
+In the :abbr:`RGB (Red, Green, Blue)` mode, a pixel is a set of 3 numerical values corresponding respectively to a **color level** in the red, green and blue color.
+
+The most frequently used pixel depth for RGB mode is **8-bits** for each color, meaning that each color value is coded on a **8-bits unsigned integer**. There are :math:`2^{8}` different levels for each color. A value of 0 corresponds to a lack of color, while the value 255 (:math:`2^{8} - 1`) corresponds to the maximum value of this color.
 
 
-
+This representation of colors is often used. For example in HTML pages rendering (see `HTML Color Codes <https://htmlcolorcodes.com/>`_ ). The  :darkorange:`DarkOrange` color, for example, is a combination of :red:`R = 255`, :green:`G = 140` and :blue:`B = 0` .
 
 

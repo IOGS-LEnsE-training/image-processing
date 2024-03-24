@@ -21,6 +21,7 @@
         <script src="../_static/documentation_options.js?v=2709fde1"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -54,7 +55,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#what-is-an-image">What is an image ?</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#raster-vs-vectorized-images">Raster vs vectorized images</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#what-are-the-main-characteristics-of-a-raster-image">What are the main characteristics of a raster image ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-describe-an-image-in-process">How to describe an image in process ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-describe-an-image-in-process">How to describe an image in process ?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#grayscale-mode">Grayscale mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rgb-mode">RGB mode</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -86,7 +91,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="digital-images">
+  <style>
+    .darkorange {color:darkorange; font-weight:bold;}
+    .red {color:red; font-weight:bold;}
+    .green {color:green; font-weight:bold;}
+    .blue {color:blue; font-weight:bold;}
+</style><section id="digital-images">
 <h1>Digital Images<a class="headerlink" href="#digital-images" title="Link to this heading"></a></h1>
 <section id="what-is-an-image">
 <h2>What is an image ?<a class="headerlink" href="#what-is-an-image" title="Link to this heading"></a></h2>
@@ -141,6 +151,24 @@
 <p>In all cases, a <strong>raster image</strong> is considered by a computer as an <strong>ordered collection of pixels</strong>, where each pixel represents a tiny dot of color of the depicted scene. Each pixel contains information about its color and intensity, typically represented using combinations of red, green, and blue (RGB) values, but other color space exists.</p>
 <p>When a computer displays an image, it reads the information stored for each pixel and renders them on the screen accordingly. This process involves converting the digital information into visual data that the human eye can perceive.</p>
 <p>In an image processing procedure, one of the most frequently used methods is to store the pixels in an <strong>2- or 3-D arrays</strong>, depending on the color space used and how the pixel information is stored (one number for the color or separated number for each component of the color).</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/images_array_gray_rgb.png" src="../_images/images_array_gray_rgb.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Array representation of a grayscale image (left side) or RGB color space image (right side).</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Accessing a pixel information requires to know the coordinates of it, i.e. the <strong>row</strong> and the <strong>column</strong> numbers.</p>
+<section id="grayscale-mode">
+<h4>Grayscale mode<a class="headerlink" href="#grayscale-mode" title="Link to this heading"></a></h4>
+<p>In the grayscale mode, a pixel represents a <strong>grayscale level</strong> through a numerical value.</p>
+<p>The most frequently used pixel depth for grayscale is <strong>8-bits</strong>, meaning that each grayscale value is coded on a <strong>8-bits unsigned integer</strong>. There are <span class="math notranslate nohighlight">\(2^{8}\)</span> different levels.  A value of 0 corresponds to the black color, while the value 255 (<span class="math notranslate nohighlight">\(2^{8} - 1\)</span>) corresponds to white color.</p>
+</section>
+<section id="rgb-mode">
+<h4>RGB mode<a class="headerlink" href="#rgb-mode" title="Link to this heading"></a></h4>
+<p>In the <abbr title="Red, Green, Blue">RGB</abbr> mode, a pixel is a set of 3 numerical values corresponding respectively to a <strong>color level</strong> in the red, green and blue color.</p>
+<p>The most frequently used pixel depth for RGB mode is <strong>8-bits</strong> for each color, meaning that each color value is coded on a <strong>8-bits unsigned integer</strong>. There are <span class="math notranslate nohighlight">\(2^{8}\)</span> different levels for each color. A value of 0 corresponds to a lack of color, while the value 255 (<span class="math notranslate nohighlight">\(2^{8} - 1\)</span>) corresponds to the maximum value of this color.</p>
+<p>This representation of colors is often used. For example in HTML pages rendering (see <a class="reference external" href="https://htmlcolorcodes.com/">HTML Color Codes</a> ). The  <span class="darkorange">DarkOrange</span> color, for example, is a combination of <span class="red">R = 255</span>, <span class="green">G = 140</span> and <span class="blue">B = 0</span> .</p>
+</section>
 </section>
 </section>
 </section>
