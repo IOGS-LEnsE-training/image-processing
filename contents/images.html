@@ -52,7 +52,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">     Digital Images</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#what-is-an-image">What is an image ?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#what-are-the-main-characteristics-of-an-image">What are the main characteristics of an image ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#raster-vs-vectorized-images">Raster vs vectorized images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-are-the-main-characteristics-of-a-raster-image">What are the main characteristics of a raster image ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-describe-an-image-in-process">How to describe an image in process ?</a></li>
 </ul>
 </li>
@@ -90,16 +91,43 @@
 <section id="what-is-an-image">
 <h2>What is an image ?<a class="headerlink" href="#what-is-an-image" title="Link to this heading"></a></h2>
 <p>An image is a <strong>visual representation</strong> or depiction of an object, scene, or concept. In the context of digital image processing, an image is typically <strong>a two-dimensional array of pixels</strong>. Each pixel represents a tiny unit of color or grayscale intensity.</p>
-<p>There are different types of digital images, including:</p>
-<ul class="simple">
-<li><p>Grayscale Images: Grayscale images consist of shades of gray, ranging from black to white, with each pixel representing a single intensity value.</p></li>
-<li><p>Color Images: Color images consist of pixels with color information, typically represented using the RGB (Red, Green, Blue) color model.</p></li>
-<li><p>Binary Images: Binary images contain only two distinct pixel values, typically representing foreground and background regions.</p></li>
-<li><p>Vector Images: Vector images are represented using mathematical formulas or geometric primitives, such as points, lines, curves, and shapes. These images are resolution-independent and can be scaled without losing quality.</p></li>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/as_spectrum.jpg"><img alt="../_images/as_spectrum.jpg" src="../_images/as_spectrum.jpg" style="width: 472.0px; height: 237.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Spectrum project - <a class="reference external" href="http://artsetsciences.institutoptique.fr/">Arts et Sciences</a> - IOGS 2024. LEnsE &amp; <a class="reference external" href="https://ericmichel.net/">Eric Michel</a>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="raster-vs-vectorized-images">
+<h3>Raster vs vectorized images<a class="headerlink" href="#raster-vs-vectorized-images" title="Link to this heading"></a></h3>
+<p>There are <strong>two main types</strong> of digital images:</p>
+<ul>
+<li><p><strong>Raster images</strong> (or pixels-based images): composed of a grid of pixels, where each pixel contains information about color and intensity. Raster images have a fixed resolution and can lose quality when scaled up. We can cite three subtypes of raster images:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Grayscale Images</strong>: Grayscale images consist of shades of gray, ranging from black to white, with each pixel representing a single intensity value.</p></li>
+<li><p><strong>Color Images</strong>: Color images consist of pixels with color information, typically represented using the RGB (Red, Green, Blue) color model.</p></li>
+<li><p><strong>Binary Images</strong>: Binary images contain only two distinct pixel values, typically representing foreground and background regions.</p></li>
 </ul>
-<section id="what-are-the-main-characteristics-of-an-image">
-<h3>What are the main characteristics of an image ?<a class="headerlink" href="#what-are-the-main-characteristics-of-an-image" title="Link to this heading"></a></h3>
-<p>The main characteristics of a digital image include:</p>
+</div></blockquote>
+</li>
+<li><p><strong>Vector Images</strong>: composed of geometric shapes such as points, lines, and curves, which are defined by mathematical equations. These images can be scaled to any size without losing quality.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Throughout this tutorial, we will only deal with <strong>raster images</strong>.</p>
+</div>
+</section>
+<section id="what-are-the-main-characteristics-of-a-raster-image">
+<h3>What are the main characteristics of a raster image ?<a class="headerlink" href="#what-are-the-main-characteristics-of-a-raster-image" title="Link to this heading"></a></h3>
+<p>A raster image is composed of a <strong>grid of pixels</strong>, where each pixel contains information about color and intensity.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/as_spectrum_with_zoom.png" src="../_images/as_spectrum_with_zoom.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Spectrum project with a zoom on a part of the image.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Each small square on the previous figure is a pixel.</p>
+<p>The <strong>main characteristics</strong> of a digital image include:</p>
 <ul class="simple">
 <li><p><strong>Resolution</strong>: it refers to the level of detail in an image and is typically measured in pixels. This resolution is based on the size of the 2D-array. An image has a <strong>width</strong> and an <strong>height</strong>.</p></li>
 <li><p><strong>Pixel Depth</strong> or Bit Depth: it refers to the number of bits used to represent the color or intensity of each pixel in an image. Common pixel depths include 8-bit (256 levels), 16-bit (65,536 levels), and 24-bit (16.7 million colors).</p></li>
@@ -109,6 +137,10 @@
 </section>
 <section id="how-to-describe-an-image-in-process">
 <h3>How to describe an image in process ?<a class="headerlink" href="#how-to-describe-an-image-in-process" title="Link to this heading"></a></h3>
+<p>Digital images are stored in files. There are <strong>different file formats</strong> for storing images, such as JPEG, PNG, GIF, BMP, and TIFF, each with its own characteristics, compression methods, and capabilities.</p>
+<p>In all cases, a <strong>raster image</strong> is considered by a computer as an <strong>ordered collection of pixels</strong>, where each pixel represents a tiny dot of color of the depicted scene. Each pixel contains information about its color and intensity, typically represented using combinations of red, green, and blue (RGB) values, but other color space exists.</p>
+<p>When a computer displays an image, it reads the information stored for each pixel and renders them on the screen accordingly. This process involves converting the digital information into visual data that the human eye can perceive.</p>
+<p>In an image processing procedure, one of the most frequently used methods is to store the pixels in an <strong>2- or 3-D arrays</strong>, depending on the color space used and how the pixel information is stored (one number for the color or separated number for each component of the color).</p>
 </section>
 </section>
 </section>
