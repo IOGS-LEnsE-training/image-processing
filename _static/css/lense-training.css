@@ -60,7 +60,7 @@ h2{
 	padding: 5px 0px 5px 0px; 
 }
 h2::before {
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	content: "\00a0 \f1b2 \00a0\00a0";
 }
 
@@ -73,7 +73,7 @@ h3{
 	padding: 2px 0px 2px 0px; 
 }
 h3::before {
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	content: "\00a0\00a0 \f101 \00a0";
 }
 
@@ -86,7 +86,7 @@ h4{
 	padding: 2px 0px 2px 0px; 
 }
 h4::before {
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	content: "\00a0\00a0 \f105 \00a0";
 	padding-left: 20px;	
 }
