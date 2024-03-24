@@ -27,7 +27,7 @@ The GitHub repository of this project : `Image Processing <https://github.com/IO
    :caption: Images
 
 	Digital Images<contents/images>
-	OpenCV: basics<contents/opencv>
+	OpenCV basic operations<contents/opencv>
 
 .. toctree::
    :maxdepth: 1
