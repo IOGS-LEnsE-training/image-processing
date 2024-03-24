@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Nucleo boards - Basics
-######################
+Image Processing - Basics
+#########################
 
 .. caution::
    This application and its documentation website are still works in progress
@@ -27,7 +27,7 @@ The GitHub repository of this project : `Image Processing <https://github.com/IO
    :caption: Images
 
 	Digital Images<contents/images>
-	Digital Images<contents/images>
+	OpenCV: basics<contents/opencv>
 
 .. toctree::
    :maxdepth: 1
@@ -38,7 +38,11 @@ The GitHub repository of this project : `Image Processing <https://github.com/IO
    :maxdepth: 1
    :caption: Edge and contours
 
-   
+
+Projects based on image processing
+##################################
+
+* `Machine Vision platform <https://iogs-lense-platforms.github.io/machine-vision>`_
 
 
 About the LEnsE
