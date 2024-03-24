@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OpenCV: Basics &mdash; Image processing 0.1 documentation</title>
+  <title>First transforms &mdash; Image processing 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/css/lense-training.css?v=a3237747" />
@@ -24,7 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="First transforms" href="images_transforms.html" /> 
+    <link rel="next" title="OpenCV: Basics" href="opencv.html" />
+    <link rel="prev" title="Play with arrays" href="images_arrays.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,23 +50,17 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Images</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="images.html">     Digital Images</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">     OpenCV basic operations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#install-opencv">Install opencv</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#install-for-python">Install for Python</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-for-c">Install for C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="images.html">     Digital Images</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="images_digital.html">     What is an image ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images_python.html">     First step with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">     First transforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#convolution-and-morphologic-transforms">02_convolution and morphologic transforms</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#using-python">Using Python</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#import-opencv">Import opencv</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#open-an-image">Open an image</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#display-an-image">Display an image</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#save-an-image">Save an image</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#images-as-arrays">Images as arrays</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="opencv.html">     OpenCV basic operations</a></li>
 </ul>
 
         </div>
@@ -82,9 +77,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">OpenCV: Basics</li>
+          <li class="breadcrumb-item"><a href="images.html">Digital Images</a></li>
+      <li class="breadcrumb-item active">First transforms</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/contents/opencv.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/contents/images_transforms.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -92,41 +88,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="opencv-basics">
-<h1>OpenCV: Basics<a class="headerlink" href="#opencv-basics" title="Link to this heading"></a></h1>
-<p>A powerful set of tools for image processing</p>
+  <section id="first-transforms">
+<h1>First transforms<a class="headerlink" href="#first-transforms" title="Link to this heading"></a></h1>
+<section id="convolution-and-morphologic-transforms">
+<h2>02_convolution and morphologic transforms<a class="headerlink" href="#convolution-and-morphologic-transforms" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Install OpenCV on Windows for MingW64  - could be long…</p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">07_opencv_first_try</span></code> : introducing OpenCV, open and display an image. /!OpenCV create a 3 channels image (R,G,B) even if the initial image is in grayscale.</p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">08_opencv_mean_filters</span></code> : convolution with a specific kernel.</p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">09_opencv_erode_opening</span></code> : erosion, dilatation, opening and closing on image.</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">04_imagePGM_first_convolution</span></code> : introducing the convolution with a kernel. Kernel class.</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">05_imagePGM_dilate_erode</span></code> : introducing the dilatation and erosion transforms.</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">06_imagePGM_opening_closing</span></code> : introducing the opening and closing transforms.</p></li>
 </ul>
-<section id="install-opencv">
-<h2>Install opencv<a class="headerlink" href="#install-opencv" title="Link to this heading"></a></h2>
-<section id="install-for-python">
-<h3>Install for Python<a class="headerlink" href="#install-for-python" title="Link to this heading"></a></h3>
-</section>
-<section id="install-for-c">
-<h3>Install for C++<a class="headerlink" href="#install-for-c" title="Link to this heading"></a></h3>
-</section>
-</section>
-<section id="using-python">
-<h2>Using Python<a class="headerlink" href="#using-python" title="Link to this heading"></a></h2>
-<section id="import-opencv">
-<h3>Import opencv<a class="headerlink" href="#import-opencv" title="Link to this heading"></a></h3>
-</section>
-<section id="open-an-image">
-<h3>Open an image<a class="headerlink" href="#open-an-image" title="Link to this heading"></a></h3>
-</section>
-<section id="display-an-image">
-<h3>Display an image<a class="headerlink" href="#display-an-image" title="Link to this heading"></a></h3>
-</section>
-<section id="save-an-image">
-<h3>Save an image<a class="headerlink" href="#save-an-image" title="Link to this heading"></a></h3>
-</section>
-</section>
-<section id="images-as-arrays">
-<h2>Images as arrays<a class="headerlink" href="#images-as-arrays" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -134,7 +104,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="images_transforms.html" class="btn btn-neutral float-left" title="First transforms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="images_arrays.html" class="btn btn-neutral float-left" title="Play with arrays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="opencv.html" class="btn btn-neutral float-right" title="OpenCV: Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is an image ? &mdash; Image processing 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/lense-training.css?v=a3237747" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/links.css?v=7a4609b2" />
+      <link rel="stylesheet" type="text/css" href="https://iogs-lense.github.io/lense.tech/assets/css/fontawesome/css/all.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python and images" href="images_python.html" />
+    <link rel="prev" title="Digital Images" href="images.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Image processing
+              <img src="../_static/logo-training_git.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Images</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="images.html">     Digital Images</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">     What is an image ?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#raster-vs-vectorized-images">Raster vs vectorized images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-are-the-main-characteristics-of-a-raster-image">What are the main characteristics of a raster image ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-describe-an-image-in-process">How to describe an image in process ?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#grayscale-mode">Grayscale mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rgb-mode">RGB mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="images_python.html">     First step with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images_transforms.html">     First transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opencv.html">     OpenCV basic operations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Image processing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="images.html">Digital Images</a></li>
+      <li class="breadcrumb-item active">What is an image ?</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contents/images_digital.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style>
+    .darkorange {color:darkorange; font-weight:bold;}
+    .red {color:red; font-weight:bold;}
+    .green {color:green; font-weight:bold;}
+    .blue {color:blue; font-weight:bold;}
+</style><section id="what-is-an-image">
+<h1>What is an image ?<a class="headerlink" href="#what-is-an-image" title="Link to this heading"></a></h1>
+<p>An image is a <strong>visual representation</strong> or depiction of an object, scene, or concept. In the context of digital image processing, an image is typically <strong>a two-dimensional array of pixels</strong>. Each pixel represents a tiny unit of color or grayscale intensity.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/as_spectrum.jpg"><img alt="../_images/as_spectrum.jpg" src="../_images/as_spectrum.jpg" style="width: 472.0px; height: 237.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Spectrum project - <a class="reference external" href="http://artsetsciences.institutoptique.fr/">Arts et Sciences</a> - IOGS 2024. LEnsE &amp; <a class="reference external" href="https://ericmichel.net/">Eric Michel</a>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="raster-vs-vectorized-images">
+<h2>Raster vs vectorized images<a class="headerlink" href="#raster-vs-vectorized-images" title="Link to this heading"></a></h2>
+<p>There are <strong>two main types</strong> of digital images:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Raster images</strong> (or pixels-based images): composed of a grid of pixels, where each pixel contains information about color and intensity. Raster images have a fixed resolution and can lose quality when scaled up. We can cite three subtypes of raster images:</dt><dd><ul>
+<li><p><strong>Grayscale Images</strong>: Grayscale images consist of shades of gray, ranging from black to white, with each pixel representing a single intensity value.</p></li>
+<li><p><strong>Color Images</strong>: Color images consist of pixels with color information, typically represented using the RGB (Red, Green, Blue) color model.</p></li>
+<li><p><strong>Binary Images</strong>: Binary images contain only two distinct pixel values, typically representing foreground and background regions.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Vector Images</strong>: composed of geometric shapes such as points, lines, and curves, which are defined by mathematical equations. These images can be scaled to any size without losing quality.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Throughout this tutorial, we will only deal with <strong>raster images</strong>.</p>
+</div>
+</section>
+<section id="what-are-the-main-characteristics-of-a-raster-image">
+<h2>What are the main characteristics of a raster image ?<a class="headerlink" href="#what-are-the-main-characteristics-of-a-raster-image" title="Link to this heading"></a></h2>
+<p>A raster image is composed of a <strong>grid of pixels</strong>, where each pixel contains information about color and intensity.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/as_spectrum_with_zoom.png" src="../_images/as_spectrum_with_zoom.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Spectrum project with a zoom on a part of the image.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Each small square on the previous figure is a pixel.</p>
+<p>The <strong>main characteristics</strong> of a digital image include:</p>
+<ul class="simple">
+<li><p><strong>Resolution</strong>: it refers to the level of detail in an image and is typically measured in pixels. This resolution is based on the size of the 2D-array. An image has a <strong>width</strong> and an <strong>height</strong>.</p></li>
+<li><p><strong>Pixel Depth</strong> or Bit Depth: it refers to the number of bits used to represent the color or intensity of each pixel in an image. Common pixel depths include 8-bit (256 levels), 16-bit (65,536 levels), and 24-bit (16.7 million colors).</p></li>
+<li><p><strong>Color Space</strong>: it defines the range of colors that can be represented in an image. Common color spaces include RGB (Red, Green, Blue), CMYK (Cyan, Magenta, Yellow, Black), and Grayscale.</p></li>
+<li><p><strong>File Format</strong>: It specifies how image data is stored and encoded in a digital file. Common image file formats include JPEG, PNG, GIF, TIFF, and BMP. Each format has its own compression method, metadata, and compatibility with different software and devices.</p></li>
+</ul>
+</section>
+<section id="how-to-describe-an-image-in-process">
+<h2>How to describe an image in process ?<a class="headerlink" href="#how-to-describe-an-image-in-process" title="Link to this heading"></a></h2>
+<p>Digital images are stored in files. There are <strong>different file formats</strong> for storing images, such as JPEG, PNG, GIF, BMP, and TIFF, each with its own characteristics, compression methods, and capabilities.</p>
+<p>In all cases, a <strong>raster image</strong> is considered by a computer as an <strong>ordered collection of pixels</strong>, where each pixel represents a tiny dot of color of the depicted scene. Each pixel contains information about its color and intensity, typically represented using combinations of red, green, and blue (RGB) values, but other color space exists.</p>
+<p>When a computer displays an image, it reads the information stored for each pixel and renders them on the screen accordingly. This process involves converting the digital information into visual data that the human eye can perceive.</p>
+<p>In an image processing procedure, one of the most frequently used methods is to store the pixels in an <strong>2- or 3-D arrays</strong>, depending on the color space used and how the pixel information is stored (one number for the color or separated number for each component of the color).</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/images_array_gray_rgb.png" src="../_images/images_array_gray_rgb.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Array representation of a grayscale image (left side) or RGB color space image (right side).</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Accessing a pixel information requires to know the coordinates of it, i.e. the <strong>row</strong> and the <strong>column</strong> numbers.</p>
+<section id="grayscale-mode">
+<h3>Grayscale mode<a class="headerlink" href="#grayscale-mode" title="Link to this heading"></a></h3>
+<p>In the grayscale mode, a pixel represents a <strong>grayscale level</strong> through a numerical value.</p>
+<p>The most frequently used pixel depth for grayscale is <strong>8-bits</strong>, meaning that each grayscale value is coded on a <strong>8-bits unsigned integer</strong>. There are <span class="math notranslate nohighlight">\(2^{8}\)</span> different levels.  A value of 0 corresponds to the black color, while the value 255 (<span class="math notranslate nohighlight">\(2^{8} - 1\)</span>) corresponds to white color.</p>
+</section>
+<section id="rgb-mode">
+<h3>RGB mode<a class="headerlink" href="#rgb-mode" title="Link to this heading"></a></h3>
+<p>In the <abbr title="Red, Green, Blue">RGB</abbr> mode, a pixel is a set of 3 numerical values corresponding respectively to a <strong>color level</strong> in the red, green and blue color.</p>
+<p>The most frequently used pixel depth for RGB mode is <strong>8-bits</strong> for each color, meaning that each color value is coded on a <strong>8-bits unsigned integer</strong>. There are <span class="math notranslate nohighlight">\(2^{8}\)</span> different levels for each color. A value of 0 corresponds to a lack of color, while the value 255 (<span class="math notranslate nohighlight">\(2^{8} - 1\)</span>) corresponds to the maximum value of this color.</p>
+<p>This representation of colors is often used. For example in HTML pages rendering (see <a class="reference external" href="https://htmlcolorcodes.com/">HTML Color Codes</a> ). The  <span class="darkorange">DarkOrange</span> color, for example, is a combination of <span class="red">R = 255</span>, <span class="green">G = 140</span> and <span class="blue">B = 0</span> .</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="images.html" class="btn btn-neutral float-left" title="Digital Images" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="images_python.html" class="btn btn-neutral float-right" title="Python and images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Julien Villemejane.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
