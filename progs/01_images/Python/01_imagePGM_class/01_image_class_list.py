@@ -1,8 +1,7 @@
 """01_image_class file.
 
 File containing :class::ImagePGM
-Class to represent a PGM image.
-
+Class to represent a PGM image. Using a list to store the data.
 
 .. note:: LEnsE - Institut d'Optique - version 1.0
 
@@ -83,3 +82,4 @@ if __name__ == "__main__":
 
     print("Infos")
     print(image)
+    print(type(image.pixels))
