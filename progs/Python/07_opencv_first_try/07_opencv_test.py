@@ -60,7 +60,12 @@ if __name__ == "__main__":
     cv2.waitKey(0)  # 0 means wait indefinitely   
 
     ## Binarize an image
-    
+    retval, binary_image = cv2.threshold(grayscale_image, 63,
+                                         255, cv2.THRESH_BINARY)
+    # Display the image
+    cv2.imshow('Binary Image Window', binary_image)
+    # Wait for a key press
+    cv2.waitKey(0)  # 0 means wait indefinitely
 
     # Close the window
     cv2.destroyAllWindows()

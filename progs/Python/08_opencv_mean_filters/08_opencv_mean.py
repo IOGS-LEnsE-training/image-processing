@@ -50,7 +50,16 @@ if __name__ == "__main__":
 
     print(f"Execution time for Grayscale: {time_gray / 10:.6f} seconds")
     print(f"Execution time for RGB: {time_rgb / 10:.6f} seconds")
-    
+
+    ## Gaussian vs Box blur
+    blurred_image15gauss = cv2.GaussianBlur(grayscale_image, kernel_size, 0)
+    blurred_image15box = cv2.blur(grayscale_image, kernel_size)
+    # Display the blurred image
+    cv2.imshow('Gaussian Blurred Image - 15', blurred_image15gauss)
+    cv2.imshow('Box Blurred Image - 15', blurred_image15box)
+    cv2.waitKey(0)
+
+
     cv2.destroyAllWindows()
     
 
