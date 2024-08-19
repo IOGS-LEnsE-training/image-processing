@@ -5,8 +5,7 @@ A powerful set of tools for image processing
 
 
 
-* Install OpenCV on Windows for MingW64  - could be long...
-* :file:`07_opencv_first_try` : introducing OpenCV, open and display an image. /!\ OpenCV create a 3 channels image (R,G,B) even if the initial image is in grayscale.
+* :file:`07_opencv_first_try` : introducing OpenCV, open and display an image.
 * :file:`08_opencv_mean_filters` : convolution with a specific kernel.
 * :file:`09_opencv_erode_opening` : erosion, dilatation, opening and closing on image.
 
@@ -191,36 +190,37 @@ If you check the shape of the resulting image, it has only one channel.
 >>> print(grayscale_image.shape)
 (382, 600)
 
-We can compare the execution time of the blur process applied on the original RGB picture and on its grayscaled version by using this code:
-
-.. code-block:: python
-
-    import timeit
-    kernel_size = (15, 15)  
-    # Blur on a grayscale image
-    def grayscale_process():
-        blurred_image15g = cv2.GaussianBlur(grayscale_image, kernel_size, 0)
-    # Blur on a RGB image
-    def rgb_process():
-        blurred_image15g = cv2.GaussianBlur(image, kernel_size, 0)
-
-    # Measure execution times
-    time_gray = timeit.timeit(grayscale_process, number=10)
-    time_rgb = timeit.timeit(rgb_process, number=10)
-
-    print(f"Execution time for Grayscale: {time_gray / 10:.6f} seconds")
-    print(f"Execution time for RGB: {time_rgb / 10:.6f} seconds")
-
-On a specific computer, we obtained these results:
-
-Execution time for Grayscale: 0.000267 seconds
-
-Execution time for RGB: 0.000757 seconds
-
-The RGB process is around 3 times slower than the grayscale process.
-
-
 Binarize an image
 =================
 
+Binarization is a fundamental image processing technique with various
+applications across multiple fields: optical character recognition (OCR),
+barcode and QR Code Detection, fingerprint recognition
+art and Image Stylization...
 
+Binarization simplifies image data by reducing it to its most basic form, making it easier for various algorithms to process, analyze, and extract meaningful information.
+
+The :code:`threshold` function of OpenCV allows to perform a binarization of a grayscale image.
+
+You can set a threshold value (e.g., 127) and a maximum value (e.g., 255).
+
+.. code-block:: python
+
+    retval, binary_image = cv2.threshold(grayscale_image, threshold,
+                                         max_value, cv2.THRESH_BINARY)
+
+This function returns two values:
+ - *retval*: The threshold value used
+ - *binary_image*: The binarized image
+
+.. figure:: ../_static/images/images_threshold.png
+   :align: center
+
+   Example of image binarization.
+
+Besides *THRESH_BINARY*, OpenCV offers other thresholding methods:
+
+- *THRESH_BINARY_INV*: Inverted binary thresholding
+- *THRESH_TRUNC*: Truncates pixel values above the threshold
+- *THRESH_TOZERO*: Sets pixels below the threshold to zero
+- *THRESH_TOZERO_INV*: Sets pixels above the threshold to zero.

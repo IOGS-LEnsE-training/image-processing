@@ -21,6 +21,7 @@
         <script src="../_static/documentation_options.js?v=2709fde1"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -57,7 +58,13 @@
 <p class="caption" role="heading"><span class="caption-text">Basic transforms</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">     Blur filter</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#level-1">Level 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blur-on-an-image">Blur on an image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blur-with-opencv">Blur with OpenCV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-blur">Gaussian blur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#averaging-blur-or-box">Averaging blur (or Box)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#comparison-between-rgb-and-grayscale-images">Comparison between RGB and Grayscale images</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="opencv_erod_dila.html">     Erosion, dilation</a></li>
@@ -90,8 +97,111 @@
              
   <section id="blur-filtering-with-opencv">
 <h1>Blur filtering with OpenCV<a class="headerlink" href="#blur-filtering-with-opencv" title="Link to this heading"></a></h1>
-<section id="level-1">
-<h2>Level 1<a class="headerlink" href="#level-1" title="Link to this heading"></a></h2>
+<section id="blur-on-an-image">
+<h2>Blur on an image<a class="headerlink" href="#blur-on-an-image" title="Link to this heading"></a></h2>
+<p><strong>Blurring an image</strong> is a process in which the sharpness of the image is reduced, <strong>making edges and fine details less distinct</strong>. This is typically done by averaging the pixels within a certain neighborhood around each pixel in the
+image. The result is a softened image where details are less pronounced.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/images_blur.png" src="../_images/images_blur.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Example of blurring of an image (Gaussian Blur - kernel of size 15).</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>There are different kinds of Blur:</p>
+<ul class="simple">
+<li><p><strong>Gaussian Blur</strong>: Applies a Gaussian function (a bell-shaped curve) to the pixels. It’s widely used due to its natural-looking blur effect.</p></li>
+<li><p><strong>Box Blur</strong> (Averaging Blur): Averages the pixels within a square neighborhood. This type of blur is simpler but  can introduce artifacts, such as “blockiness.”</p></li>
+<li><p><strong>Median Blur</strong>: Replaces each pixel’s value with the median value of the surrounding pixels. This type of blur is particularly good at removing noise while preserving edges.</p></li>
+<li><p><strong>Motion Blur</strong>: Simulates the effect of the camera or object moving during exposure, causing a directional blur.</p></li>
+</ul>
+<p>The main applications of that kind of filter are: Noise Reduction, Image Preprocessing, Aesthetic Effects, Depth of
+Field Simulation, Data Privacy…</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The code of this example is in the <code class="file docutils literal notranslate"><span class="pre">\progs\Python\08_opencv_mean_filters\08_opencv_mean.py</span></code> file of the repository.</p>
+<p>Examples of images are stored in <code class="file docutils literal notranslate"><span class="pre">\_data\</span></code> directory of the repository.</p>
+</div>
+</section>
+<section id="blur-with-opencv">
+<h2>Blur with OpenCV<a class="headerlink" href="#blur-with-opencv" title="Link to this heading"></a></h2>
+<p>Blur filters require a convolution kernel to process the image.</p>
+<p>This kernel defines how the convolution process will modify each pixel in
+the image. It determines the type and extent of the effect (like blurring, sharpening, or edge detection) by specifying how neighboring pixels contribute to the output.</p>
+<p>(see …)</p>
+<p>In the case of blurring, the kernel is a square matrix whose size is determined by an odd integer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="gaussian-blur">
+<h3>Gaussian blur<a class="headerlink" href="#gaussian-blur" title="Link to this heading"></a></h3>
+<p>Gaussian Blur uses a <strong>kernel based on a Gaussian distribution</strong>, giving more importance to closer pixels and resulting in a smoother, more natural blur.</p>
+<p>For example, a 3x3 kernel gives this resulting matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+1 &amp; 2 &amp; 1 \\
+2 &amp; 4 &amp; 2 \\
+1 &amp; 2 &amp; 1
+\end{bmatrix}\end{split}\]</div>
+<p>And after normalizing:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+1/16 &amp; 2/16 &amp; 1/16 \\
+2/16 &amp; 4/16 &amp; 2/16 \\
+1/16 &amp; 2/16 &amp; 1/16
+\end{bmatrix}\end{split}\]</div>
+<p>To perform a gaussian blur filter on an image with OpenCV, you have to use the <code class="code docutils literal notranslate"><span class="pre">GaussianBlur</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">blurred_image_15_gauss</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="averaging-blur-or-box">
+<h3>Averaging blur (or Box)<a class="headerlink" href="#averaging-blur-or-box" title="Link to this heading"></a></h3>
+<p>Box Blur uses a <strong>uniform kernel</strong> where all neighboring pixels are averaged equally, resulting in a simpler but sometimes rougher blur.</p>
+<p>For example, a 3x3 kernel gives this resulting normalized matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+1/9 &amp; 1/9 &amp; 1/9 \\
+1/9 &amp; 1/9 &amp; 1/9 \\
+1/9 &amp; 1/9 &amp; 1/9
+\end{bmatrix}\end{split}\]</div>
+<p>To perform a averaging blur filter on an image with OpenCV, you have to use the <code class="code docutils literal notranslate"><span class="pre">blur</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">blurred_image_15_box</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">blur</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id2">
+<img alt="../_images/images_blur_box_gauss.png" src="../_images/images_blur_box_gauss.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Comparison of a box blur filter (left) and a Gaussian blur filter (kernel of size 15).</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="comparison-between-rgb-and-grayscale-images">
+<h2>Comparison between RGB and Grayscale images<a class="headerlink" href="#comparison-between-rgb-and-grayscale-images" title="Link to this heading"></a></h2>
+<p>We can compare the execution time of the blur process applied on the original RGB picture and on its grayscaled version by using this code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="c1"># Blur on a grayscale image</span>
+<span class="k">def</span> <span class="nf">grayscale_process</span><span class="p">():</span>
+    <span class="n">blurred_image15g</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Blur on a RGB image</span>
+<span class="k">def</span> <span class="nf">rgb_process</span><span class="p">():</span>
+    <span class="n">blurred_image15g</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Measure execution times</span>
+<span class="n">time_gray</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">grayscale_process</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">time_rgb</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">rgb_process</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution time for Grayscale: </span><span class="si">{</span><span class="n">time_gray</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution time for RGB: </span><span class="si">{</span><span class="n">time_rgb</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On a specific computer, we obtained these results:</p>
+<ul class="simple">
+<li><p>Execution time for Grayscale: 0.000267 seconds</p></li>
+<li><p>Execution time for RGB: 0.000757 seconds</p></li>
+</ul>
+<p>The RGB process is around 3 times slower than the grayscale process.</p>
 </section>
 </section>
 

@@ -21,6 +21,7 @@
         <script src="../_static/documentation_options.js?v=2709fde1"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -58,7 +59,15 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="opencv_blur.html">     Blur filter</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">     Erosion, dilation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#level-1">Level 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kernels-for-erosion-and-dilation">Kernels for erosion and dilation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kernels-with-opencv">Kernels with OpenCV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#erosion-operation">Erosion Operation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#erosion-with-opencv">Erosion with OpenCV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dilation-operation">Dilation Operation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="opencv_open_close.html">     Opening, closing</a></li>
@@ -90,8 +99,83 @@
              
   <section id="erosion-and-dilation">
 <h1>Erosion and dilation<a class="headerlink" href="#erosion-and-dilation" title="Link to this heading"></a></h1>
-<section id="level-1">
-<h2>Level 1<a class="headerlink" href="#level-1" title="Link to this heading"></a></h2>
+<p>In <strong>image processing</strong>, erosion and dilation are fundamental morphological operations that modify the shape and
+structure of objects in a binary image. Both operations use a kernel, also known as a structuring element, to define the neighborhood of pixels that influence the process. The choice of kernel affects how the erosion and dilation operations are applied to the image.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/images_erosion.png" src="../_images/images_erosion.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Example of erosion operation on an image (Square kernel of size 9).</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The code of this example is in the <code class="file docutils literal notranslate"><span class="pre">\progs\Python\09_opencv_erode_opening\09_opencv_erode.py</span></code> file of the repository.</p>
+<p>Examples of images are stored in <code class="file docutils literal notranslate"><span class="pre">\_data\</span></code> directory of the repository.</p>
+</div>
+<section id="kernels-for-erosion-and-dilation">
+<h2>Kernels for erosion and dilation<a class="headerlink" href="#kernels-for-erosion-and-dilation" title="Link to this heading"></a></h2>
+<p>The kernel used for these operations is typically a small, binary matrix, usually in the shape of a square,
+rectangle, ellipse or cross.</p>
+<p>Its size (e.g., 3x3, 5x5) determines the extent of the operation. Larger kernels result in more pronounced erosion or dilation effects.</p>
+<p>Example of a square kernel (3x3):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+1 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 1
+\end{bmatrix}\end{split}\]</div>
+<p>Example of a cross kernel (3x3):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+0 &amp; 1 &amp; 0 \\
+1 &amp; 1 &amp; 1 \\
+0 &amp; 1 &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<section id="kernels-with-opencv">
+<h3>Kernels with OpenCV<a class="headerlink" href="#kernels-with-opencv" title="Link to this heading"></a></h3>
+<p>OpenCV provides the <code class="code docutils literal notranslate"><span class="pre">getStructuringElement</span></code> function to create these kernels and some predefined structure.</p>
+<p>For example, to create a <strong>cross kernel</strong> of size <em>N</em> (where N is an odd integer), you can use the following instruction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cross_kernel_N</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_CROSS</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>To create a square kernel:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">square_kernel_N</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_RECT</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then, you can use <code class="code docutils literal notranslate"><span class="pre">erode</span></code> and <code class="code docutils literal notranslate"><span class="pre">dilate</span></code> functions to perform erosion and dilation, respectively.</p>
+</section>
+</section>
+<section id="erosion-operation">
+<h2>Erosion Operation<a class="headerlink" href="#erosion-operation" title="Link to this heading"></a></h2>
+<p>Erosion removes pixels from the boundaries of objects in a binary image, effectively shrinking them. It is often used
+to <strong>eliminate small noise</strong> and detach connected objects.</p>
+<p>For each pixel in the image, the kernel is centered on the pixel, and the pixel is set to the minimum value covered by the kernel. If the kernel is entirely over foreground pixels (typically value 1), the central pixel remains as foreground. If even one pixel in the kernel’s neighborhood is background (typically value 0), the central pixel becomes background.</p>
+<section id="erosion-with-opencv">
+<h3>Erosion with OpenCV<a class="headerlink" href="#erosion-with-opencv" title="Link to this heading"></a></h3>
+<p>The <code class="code docutils literal notranslate"><span class="pre">erode</span></code> function performs erosion on the given image using a specified kernel.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eroded_image_cross_9</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">erode</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">cross_kernel_9</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function returns an array with the same shape as the initial image. You can then display the image with the standard <code class="code docutils literal notranslate"><span class="pre">imshow</span></code> function
+of OpenCV.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/images_erosion_cross.png" src="../_images/images_erosion_cross.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Example of erosion operation on an image (Cross kernel of size 5 on the left and 9 on the right).</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<img alt="../_images/images_erosion_cross_square.png" src="../_images/images_erosion_cross_square.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Comparison of erosion operation on an image (Cross kernel of size 9 on the left and square kernell of size 9 on the right).</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="dilation-operation">
+<h2>Dilation Operation<a class="headerlink" href="#dilation-operation" title="Link to this heading"></a></h2>
+<p>Dilation adds pixels to the boundaries of objects, effectively expanding them. It is used to <strong>fill in small holes and gaps</strong> and to connect adjacent objects.</p>
+<p>For each pixel, the kernel is centered on the pixel, and the pixel is set to the maximum value covered by the kernel. If any part of the kernel overlaps a foreground pixel, the central pixel is set to foreground.</p>
 </section>
 </section>
 
