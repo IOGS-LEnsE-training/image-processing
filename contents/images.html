@@ -19,8 +19,9 @@
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -52,12 +53,17 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">     Digital Images</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="images_digital.html">     What is an image ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="images_python.html">     First step with Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="images_transforms.html">     First transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images_convol.html">     Image transformation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">     Python and images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opencv.html">     OpenCV basic operations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Basic transforms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="opencv_blur.html">     Blur filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv_erod_dila.html">     Erosion, dilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv_open_close.html">     Opening, closing</a></li>
 </ul>
 
         </div>
@@ -93,21 +99,10 @@
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Spectrum project - <a class="reference external" href="http://artsetsciences.institutoptique.fr/">Arts et Sciences</a> - IOGS 2024. LEnsE &amp; <a class="reference external" href="https://ericmichel.net/">Eric Michel</a>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>Examples of opening and writing <abbr title="Portable Gray Map">PGM</abbr> and
-<abbr title="Portable Pixmap">PPM</abbr> images in Python are given.
-Then, we will play with image data. Finally, we will code some primitive transforms of images.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Examples of this section require <strong>Python 3.9</strong> (or higher), <strong>Numpy</strong> and <strong>Matplotlib</strong>.</p>
-<p>If you need help with Python for scientific use, you can check this set of tutorials:
-<a class="reference external" href="https://iogs-lense-training.github.io/python-for-science/">Python for Science</a>.</p>
-</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="images_digital.html">     What is an image ?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="images_python.html">     First step with Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
-<li class="toctree-l1"><a class="reference internal" href="images_transforms.html">     First transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="images_convol.html">     Image transformation</a></li>
 </ul>
 </div>
 </section>

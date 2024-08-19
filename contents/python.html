@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>First transforms &mdash; Image processing 0.1 documentation</title>
+  <title>Digital Images &mdash; Image processing 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/css/lense-training.css?v=a3237747" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="OpenCV: Basics" href="opencv.html" />
-    <link rel="prev" title="Play with arrays" href="images_arrays.html" /> 
+    <link rel="next" title="Python and images" href="images_python.html" />
+    <link rel="prev" title="Image transformations" href="images_convol.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,13 +51,10 @@
               <p class="caption" role="heading"><span class="caption-text">Images</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="images.html">     Digital Images</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="python.html">     Python and images</a><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">     Python and images</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="images_python.html">     PGM files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">     First transforms</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#convolution-and-morphologic-transforms">02_convolution and morphologic transforms</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="images_transforms.html">     First transforms</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="opencv.html">     OpenCV basic operations</a></li>
@@ -83,10 +80,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="python.html">Digital Images</a></li>
-      <li class="breadcrumb-item active">First transforms</li>
+      <li class="breadcrumb-item active">Digital Images</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/contents/images_transforms.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/contents/python.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -94,24 +90,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="first-transforms">
-<h1>First transforms<a class="headerlink" href="#first-transforms" title="Link to this heading"></a></h1>
-<section id="convolution-and-morphologic-transforms">
-<h2>02_convolution and morphologic transforms<a class="headerlink" href="#convolution-and-morphologic-transforms" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><code class="file docutils literal notranslate"><span class="pre">04_imagePGM_first_convolution</span></code> : introducing the convolution with a kernel. Kernel class.</p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">05_imagePGM_dilate_erode</span></code> : introducing the dilatation and erosion transforms.</p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">06_imagePGM_opening_closing</span></code> : introducing the opening and closing transforms.</p></li>
+  <section id="digital-images">
+<h1>Digital Images<a class="headerlink" href="#digital-images" title="Link to this heading"></a></h1>
+<p>This section deals with digital images and how to play with Python (Numpy).</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/as_spectrum.jpg"><img alt="../_images/as_spectrum.jpg" src="../_images/as_spectrum.jpg" style="width: 472.0px; height: 237.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Spectrum project - <a class="reference external" href="http://artsetsciences.institutoptique.fr/">Arts et Sciences</a> - IOGS 2024. LEnsE &amp; <a class="reference external" href="https://ericmichel.net/">Eric Michel</a>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Examples of opening and writing <abbr title="Portable Gray Map">PGM</abbr> and
+<abbr title="Portable Pixmap">PPM</abbr> images in Python are given.
+Then, we will play with image data. Finally, we will code some primitive transforms of images.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Examples of this section require <strong>Python 3.9</strong> (or higher), <strong>Numpy</strong> and <strong>Matplotlib</strong>.</p>
+<p>If you need help with Python for scientific use, you can check this set of tutorials:
+<a class="reference external" href="https://iogs-lense-training.github.io/python-for-science/">Python for Science</a>.</p>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="images_python.html">     PGM files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="images_transforms.html">     First transforms</a></li>
 </ul>
-</section>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="images_arrays.html" class="btn btn-neutral float-left" title="Play with arrays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="opencv.html" class="btn btn-neutral float-right" title="OpenCV: Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="images_convol.html" class="btn btn-neutral float-left" title="Image transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="images_python.html" class="btn btn-neutral float-right" title="Python and images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

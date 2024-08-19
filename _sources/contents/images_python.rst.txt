@@ -74,7 +74,7 @@ Here's an example of the structure of an ASCII-encoded PPM file:
     3 2
     255
     0 0 0 0 1 0 1 1 0   # Pixel values for the first row
-    255 0 0 0 255 0 0 0255   # Pixel values for the second row
+    255 0 0 0 255 0 0 0 255   # Pixel values for the second row
 
 Read a PGM file - list
 **********************
@@ -84,6 +84,8 @@ Read a PGM file - list
     The codes of this example is in the :file:`\\progs\\Python\\00_open_a_PGM_file\\` directory of the repository.
 
     Examples of images are stored in :file:`\\_data\\` directory of the repository.
+	
+	The main file of the Python script is :file:`00_open_PGM_file_list.py`
 
 Function to read a PGM file
 ===========================
@@ -148,6 +150,83 @@ But if you want to access to the 96th pixel of the 50th row (each row has 600 pi
 Read a PGM file - array
 ***********************
 
+.. note::
+
+    The codes of this example is in the :file:`\\progs\\Python\\00_open_a_PGM_file\\` directory of the repository.
+
+    Examples of images are stored in :file:`\\_data\\` directory of the repository.
+	
+	The main file of the Python script is :file:`00_open_PGM_file_array.py`
+
+Function to read a PGM file
+===========================
+
+As described previously, a PGM file in **plain text format** can be opened like a classical ASCII text file. The path to the file must be given to the function. This function is nearly the same as previously.
+
+.. code-block:: python
+    :linenos:
+
+	def read_image_PGM(filename: str) -> list:
+
+		try:
+			with open(filename, 'r') as f:
+				# Read the magic number of the file
+				magic_number = f.readline().strip()
+				if magic_number != 'P2':
+					raise ValueError("Invalid PGM file format")
+							
+				# Read the width, height, and maximum gray value
+				width, height = map(int, f.readline().split())
+				max_gray_value = int(f.readline())
+				print(f'PGM File\nMagic Number={magic_number}')
+				print(f'W={width} / H={height} / Maximum Gray Value={max_gray_value}')
+				
+				# Read each pixel value
+				pixels = []
+				for line in f:
+					pixels.extend(line.split())
+				
+				# Convert the image data to a NumPy array
+				image = np.array(pixels, dtype=int).reshape((height, width))
+				return image
+		except FileNotFoundError:
+			print(f"Error: Unable to open file {filename}")
+
+
+Then, the last lines contain pixels information. They are stored in a new list (called :code:`image`). In this case, the final object is an array from the Numpy package.
+
+Opening an image
+----------------
+
+You can try this function with the next command, in a *command shell*:
+
+>>> image = read_image_PGM("../../_data/robot.pgm")
+PGM File
+Magic Number=P2
+W=600 / H=382 / Maximum Gray Value=255
+
+The :file:`robot.pgm` file contains an image of 600 x 382 pixels.
+
+The type of the returned object is a Python :code:`numpy.ndarray`.
+
+>>> print(type(image))
+<class 'numpy.ndarray'>
+
+And you can access to the shape of the image by the following instruction : 
+
+>>> print(image.shape)
+(382, 600)
+
+Accessing to a pixel value
+==========================
+
+The function we defined returns a list of integers. In this example, the length of the list :code:`image` is 600 by 382 pixels.
+
+If you want to access to the 96th pixel of the 50th row (each row has 600 pixels), you need to use the following command:
+
+>>> print(image[50, 96])
+[190]
+
 
 Create a class: ImagePGM
 ************************
@@ -159,9 +238,7 @@ To **facilitate the access to metadata** of an image, it is recommended to use a
     If you are not familiar with **object-oriented programming**, you can practice with this tutorial: *Soon...*
 
 
-
-To remove
-*********
+|
 
 Start by discovering PGM images (without compression - grayscale)
 

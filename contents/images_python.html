@@ -19,13 +19,13 @@
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Play with arrays" href="images_arrays.html" />
-    <link rel="prev" title="What is an image ?" href="images_digital.html" /> 
+    <link rel="prev" title="Digital Images" href="python.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,9 +50,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Images</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="images.html">     Digital Images</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="images_digital.html">     What is an image ?</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">     First step with Python</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="images.html">     Digital Images</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="python.html">     Python and images</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">     PGM files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pgm-and-ppm-files-formats">PGM and PPM files formats</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#structure-of-a-pgm-file">Structure of a PGM file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#structure-of-a-ppm-file">Structure of a PPM file</a></li>
@@ -63,9 +63,12 @@
 <li class="toctree-l4"><a class="reference internal" href="#accessing-to-a-pixel-value">Accessing to a pixel value</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#read-a-pgm-file-array">Read a PGM file - array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read-a-pgm-file-array">Read a PGM file - array</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Function to read a PGM file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Accessing to a pixel value</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-class-imagepgm">Create a class: ImagePGM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#to-remove">To remove</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
@@ -73,6 +76,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="opencv.html">     OpenCV basic operations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Basic transforms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="opencv_blur.html">     Blur filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv_erod_dila.html">     Erosion, dilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv_open_close.html">     Opening, closing</a></li>
 </ul>
 
         </div>
@@ -89,7 +98,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="images.html">Digital Images</a></li>
+          <li class="breadcrumb-item"><a href="python.html">Digital Images</a></li>
       <li class="breadcrumb-item active">Python and images</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/contents/images_python.rst.txt" rel="nofollow"> View page source</a>
@@ -164,7 +173,7 @@
 <span class="m">3</span><span class="w"> </span><span class="m">2</span>
 <span class="m">255</span>
 <span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w">   </span><span class="c1"># Pixel values for the first row</span>
-<span class="m">255</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">255</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0255</span><span class="w">   </span><span class="c1"># Pixel values for the second row</span>
+<span class="m">255</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">255</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">255</span><span class="w">   </span><span class="c1"># Pixel values for the second row</span>
 </pre></div>
 </div>
 </section>
@@ -175,6 +184,9 @@
 <p class="admonition-title">Note</p>
 <p>The codes of this example is in the <code class="file docutils literal notranslate"><span class="pre">\progs\Python\00_open_a_PGM_file\</span></code> directory of the repository.</p>
 <p>Examples of images are stored in <code class="file docutils literal notranslate"><span class="pre">\_data\</span></code> directory of the repository.</p>
+<blockquote>
+<div><p>The main file of the Python script is <code class="file docutils literal notranslate"><span class="pre">00_open_PGM_file_list.py</span></code></p>
+</div></blockquote>
 </div>
 <section id="function-to-read-a-pgm-file">
 <h3>Function to read a PGM file<a class="headerlink" href="#function-to-read-a-pgm-file" title="Link to this heading"></a></h3>
@@ -231,6 +243,76 @@
 </section>
 <section id="read-a-pgm-file-array">
 <h2>Read a PGM file - array<a class="headerlink" href="#read-a-pgm-file-array" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The codes of this example is in the <code class="file docutils literal notranslate"><span class="pre">\progs\Python\00_open_a_PGM_file\</span></code> directory of the repository.</p>
+<p>Examples of images are stored in <code class="file docutils literal notranslate"><span class="pre">\_data\</span></code> directory of the repository.</p>
+<blockquote>
+<div><p>The main file of the Python script is <code class="file docutils literal notranslate"><span class="pre">00_open_PGM_file_array.py</span></code></p>
+</div></blockquote>
+</div>
+<section id="id1">
+<h3>Function to read a PGM file<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>As described previously, a PGM file in <strong>plain text format</strong> can be opened like a classical ASCII text file. The path to the file must be given to the function. This function is nearly the same as previously.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>    <span class="k">def</span> <span class="nf">read_image_PGM</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>            <span class="k">try</span><span class="p">:</span>
+<span class="linenos"> 4</span>                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos"> 5</span>                            <span class="c1"># Read the magic number of the file</span>
+<span class="linenos"> 6</span>                            <span class="n">magic_number</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="linenos"> 7</span>                            <span class="k">if</span> <span class="n">magic_number</span> <span class="o">!=</span> <span class="s1">&#39;P2&#39;</span><span class="p">:</span>
+<span class="linenos"> 8</span>                                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid PGM file format&quot;</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>                            <span class="c1"># Read the width, height, and maximum gray value</span>
+<span class="linenos">11</span>                            <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="linenos">12</span>                            <span class="n">max_gray_value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="linenos">13</span>                            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PGM File</span><span class="se">\n</span><span class="s1">Magic Number=</span><span class="si">{</span><span class="n">magic_number</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">14</span>                            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;W=</span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s1"> / H=</span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s1"> / Maximum Gray Value=</span><span class="si">{</span><span class="n">max_gray_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>                            <span class="c1"># Read each pixel value</span>
+<span class="linenos">17</span>                            <span class="n">pixels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">18</span>                            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">19</span>                                    <span class="n">pixels</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>                            <span class="c1"># Convert the image data to a NumPy array</span>
+<span class="linenos">22</span>                            <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pixels</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
+<span class="linenos">23</span>                            <span class="k">return</span> <span class="n">image</span>
+<span class="linenos">24</span>            <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<span class="linenos">25</span>                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: Unable to open file </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, the last lines contain pixels information. They are stored in a new list (called <code class="code docutils literal notranslate"><span class="pre">image</span></code>). In this case, the final object is an array from the Numpy package.</p>
+<section id="id2">
+<h4>Opening an image<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<p>You can try this function with the next command, in a <em>command shell</em>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">read_image_PGM</span><span class="p">(</span><span class="s2">&quot;../../_data/robot.pgm&quot;</span><span class="p">)</span>
+<span class="go">PGM File</span>
+<span class="go">Magic Number=P2</span>
+<span class="go">W=600 / H=382 / Maximum Gray Value=255</span>
+</pre></div>
+</div>
+<p>The <code class="file docutils literal notranslate"><span class="pre">robot.pgm</span></code> file contains an image of 600 x 382 pixels.</p>
+<p>The type of the returned object is a Python <code class="code docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">image</span><span class="p">))</span>
+<span class="go">&lt;class &#39;numpy.ndarray&#39;&gt;</span>
+</pre></div>
+</div>
+<p>And you can access to the shape of the image by the following instruction :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(382, 600)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h3>Accessing to a pixel value<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>The function we defined returns a list of integers. In this example, the length of the list <code class="code docutils literal notranslate"><span class="pre">image</span></code> is 600 by 382 pixels.</p>
+<p>If you want to access to the 96th pixel of the 50th row (each row has 600 pixels), you need to use the following command:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">96</span><span class="p">])</span>
+<span class="go">[190]</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="create-a-class-imagepgm">
 <h2>Create a class: ImagePGM<a class="headerlink" href="#create-a-class-imagepgm" title="Link to this heading"></a></h2>
@@ -239,9 +321,9 @@
 <p class="admonition-title">Note</p>
 <p>If you are not familiar with <strong>object-oriented programming</strong>, you can practice with this tutorial: <em>Soon…</em></p>
 </div>
-</section>
-<section id="to-remove">
-<h2>To remove<a class="headerlink" href="#to-remove" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>Start by discovering PGM images (without compression - grayscale)</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -269,7 +351,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="images_digital.html" class="btn btn-neutral float-left" title="What is an image ?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral float-left" title="Digital Images" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="images_arrays.html" class="btn btn-neutral float-right" title="Play with arrays" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

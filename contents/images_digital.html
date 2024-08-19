@@ -19,13 +19,13 @@
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python and images" href="images_python.html" />
+    <link rel="next" title="Image transformations" href="images_convol.html" />
     <link rel="prev" title="Digital Images" href="images.html" /> 
 </head>
 
@@ -62,12 +62,17 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="images_python.html">     First step with Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="images_transforms.html">     First transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images_convol.html">     Image transformation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">     Python and images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opencv.html">     OpenCV basic operations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Basic transforms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="opencv_blur.html">     Blur filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv_erod_dila.html">     Erosion, dilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv_open_close.html">     Opening, closing</a></li>
 </ul>
 
         </div>
@@ -101,7 +106,7 @@
     .green {color:green; font-weight:bold;}
     .blue {color:blue; font-weight:bold;}
 </style><section id="what-is-an-image">
-<h1>What is an image ?<a class="headerlink" href="#what-is-an-image" title="Link to this heading"></a></h1>
+<span id="digital-image"></span><h1>What is an image ?<a class="headerlink" href="#what-is-an-image" title="Link to this heading"></a></h1>
 <p>An image is a <strong>visual representation</strong> or depiction of an object, scene, or concept. In the context of digital image processing, an image is typically <strong>a two-dimensional array of pixels</strong>. Each pixel represents a tiny unit of color or grayscale intensity.</p>
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../_images/as_spectrum.jpg"><img alt="../_images/as_spectrum.jpg" src="../_images/as_spectrum.jpg" style="width: 472.0px; height: 237.0px;" /></a>
@@ -152,7 +157,7 @@
 <p>Digital images are stored in files. There are <strong>different file formats</strong> for storing images, such as JPEG, PNG, GIF, BMP, and TIFF, each with its own characteristics, compression methods, and capabilities.</p>
 <p>In all cases, a <strong>raster image</strong> is considered by a computer as an <strong>ordered collection of pixels</strong>, where each pixel represents a tiny dot of color of the depicted scene. Each pixel contains information about its color and intensity, typically represented using combinations of red, green, and blue (RGB) values, but other color space exists.</p>
 <p>When a computer displays an image, it reads the information stored for each pixel and renders them on the screen accordingly. This process involves converting the digital information into visual data that the human eye can perceive.</p>
-<p>In an image processing procedure, one of the most frequently used methods is to store the pixels in an <strong>2- or 3-D arrays</strong>, depending on the color space used and how the pixel information is stored (one number for the color or separated number for each component of the color).</p>
+<p>In an image processing procedure, one of the most frequently used methods is to store the pixels in <strong>2- or 3-D arrays</strong>, depending on the color space used and how the pixel information is stored (one number for the color or separated number for each component of the color).</p>
 <figure class="align-center" id="id3">
 <img alt="../_images/images_array_gray_rgb.png" src="../_images/images_array_gray_rgb.png" />
 <figcaption>
@@ -179,7 +184,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="images.html" class="btn btn-neutral float-left" title="Digital Images" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="images_python.html" class="btn btn-neutral float-right" title="Python and images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="images_convol.html" class="btn btn-neutral float-right" title="Image transformations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

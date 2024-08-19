@@ -17,27 +17,210 @@ Install opencv
 Install for Python
 ==================
 
+To install OpenCV for Python, you can use the package manager :code:`pip`.
+
+.. code-block:: bash
+
+	pip install opencv-python
 
 Install for C++
 ===============
 
+Soon...
 
 Using Python 
 ************
 
+.. note::
+
+    The code of this example is in the :file:`\\progs\\Python\\07_opencv_first_try\\07_opencv_test.py` file of the repository.
+
+    Examples of images are stored in :file:`\\_data\\` directory of the repository.
+
 Import opencv
 =============
+
+To import OpenCV in your Python scripts, you can use this instruction:
+
+.. code-block:: python
+
+	import cv2
+	
+To display the version of OpenCV that is installed (and verify its good installation...), you can use this instruction: 
+
+.. code-block:: python
+
+	print(cv2.__version__)
 
 Open an image
 =============
 
+The :code:`imread` function of OpenCV reads an image from a specified file path. A lot of different formats can be opened (JPG, PNG...).
+
+.. code-block:: python
+
+	image = cv2.imread('path/to/your/image.jpg')
+
+Replace 'path/to/your/image.jpg' with the actual path to your image file.
+
+>>> image = cv2.imread("../../_data/robot.pgm")
+
+The data from the file are stored in a :code:`numpy.ndarray` object, as showed by the next instruction:
+
+>>> print(type(image))
+<class 'numpy.ndarray'>
+
+You can also access to the size of the image (or shape) by the next instruction:
+
+>>> print(image.shape)
+(382, 600, 3)
+
+The firt value is the height, the second one the width and the third one is the number of channels.
+
+.. note::
+
+	Even if the image is stored in a grayscale format, the :code:`imread` function of OpenCV create a 3 channels image (R, G, B). In the case of a grayscale format, the 3 channels are exactly the same.
+
+
 Display an image
 ================
+
+OpenCV uses different graphic backends to display images, depending on the operating system and how OpenCV was compiled. The most common graphic packages or libraries that OpenCV relies on to display images using the cv2.imshow() function include: GTK (GIMP Toolkit), Qt, Win32 API, Cocoa (on macOS).
+
+To display an image, you can use the :code:`imshow` function of OpenCV as described below:
+
+.. code-block:: python
+
+	cv2.imshow('Image Window', image)
+	
+The first parameter is the name of the window that will display the image. The second parameter is the :code:`numpy.ndarray` containing the image.
+
+.. warning::
+	
+	The :code:`imshow` function doesn't pause or block the execution of your script. To keep the window opened, a blocking function is required.
+	
+To maintain the display of the image, you can use the :code:`waitKey` function of OpenCV as mentionned below:
+
+.. code-block:: python
+
+	cv2.waitKey(0)  # 0 means wait indefinitely
+	
+To close the window, you need to click on the top-right cross of the window, or press any key of the keyboard.
+
+At the end of your script, to be sure that each OpenCV window is closed, you can use this instruction:
+
+.. code-block:: python
+	
+	cv2.destroyAllWindows()
+
 
 Save an image
 =============
 
+It is also possible to save a :code:`numpy.ndarray` object (containing data of an image) in a specific file with the :code:`imwrite` function of OpenCV.
+
+The next code, for example, permits to generate a random image (with Numpy random function) and to store it into a specific file.
+
+.. code-block:: python
+
+    # Generate a random image
+    height, width, channels = 256, 512, 3
+    # Generate random pixel values in the range [0, 255] for an RGB image
+    random_image = np.random.randint(0, 256, (height, width, channels), dtype=np.uint8)
+
+    # Save the image using OpenCV
+    output_filename = 'random_image.png'
+    cv2.imwrite(output_filename, random_image)
+
+The :code:`imwrite` function needs two parameters: the path to the file to save the data and the :code:`numpy.ndarray` object containing the data.
+
+
 Images as arrays
 ****************
+
+As mentionned in the :ref:`digital-image` section, a digital raster image is a 2- or 3-D array, depending on the color space used and how the pixel information is stored. One of the most efficient method to store data from a digital image is to use :code:`numpy.ndarray`. OpenCV is based on this principle (as we could see in the previous part).
+
+
+Access to a part of an image
+============================
+
+It is possible to access to a part of an image by using the properties of :code:`numpy.ndarray`. This process is called: **cropping an image**. This means extracting a rectangular portion from the original image.
+
+To extract a part of an image from a first point of coordinates (x1, y1) to a second point of coordinates (x2, y2), you can follow this instruction:
+
+.. code-block:: python
+
+    image_crop = image[y1:y2,x1:x2,:]
+
+To obtain the shape of the new cropped image, you can use:
+
+.. code-block:: python
+
+    print(image_crop.shape)
+	
+|
+
+.. figure:: ../_static/images/images_crop_numpy.png
+   :align: center
+   :scale: 80%
+
+   Example of image cropping: on the left the original image, on the right the cropped image around the robot wheel.
+   
+For this example, we used the following code:
+
+.. code-block:: python
+
+    image = cv2.imread("../../_data/robot.pgm")
+	image_crop = image[200:350,300:500,:]
+
+
+Convert an image to grayscale format
+====================================
+
+Converting an image to grayscale is a common and useful step in image processing and computer vision to **simplify computation**. Grayscale images have only one channel (intensity), instead of three (RGB) in color images. Operations such as filtering, edge detection, and thresholding can be performed more quickly on grayscale images due to the reduced amount of data.
+
+
+To convert an image to grayscale using OpenCV in Python, you can use the :code:`cvtColor` function. This function is designed to convert images between different color spaces, including converting a color image to grayscale:
+
+.. code-block:: python
+
+	grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+	
+If you check the shape of the resulting image, it has only one channel.
+
+>>> print(grayscale_image.shape)
+(382, 600)
+
+We can compare the execution time of the blur process applied on the original RGB picture and on its grayscaled version by using this code:
+
+.. code-block:: python
+
+    import timeit
+    kernel_size = (15, 15)  
+    # Blur on a grayscale image
+    def grayscale_process():
+        blurred_image15g = cv2.GaussianBlur(grayscale_image, kernel_size, 0)
+    # Blur on a RGB image
+    def rgb_process():
+        blurred_image15g = cv2.GaussianBlur(image, kernel_size, 0)
+
+    # Measure execution times
+    time_gray = timeit.timeit(grayscale_process, number=10)
+    time_rgb = timeit.timeit(rgb_process, number=10)
+
+    print(f"Execution time for Grayscale: {time_gray / 10:.6f} seconds")
+    print(f"Execution time for RGB: {time_rgb / 10:.6f} seconds")
+
+On a specific computer, we obtained these results:
+
+Execution time for Grayscale: 0.000267 seconds
+
+Execution time for RGB: 0.000757 seconds
+
+The RGB process is around 3 times slower than the grayscale process.
+
+
+Binarize an image
+=================
 
 

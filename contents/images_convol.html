@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>First transforms &mdash; Image processing 0.1 documentation</title>
+  <title>Image transformations &mdash; Image processing 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/css/lense-training.css?v=a3237747" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="OpenCV: Basics" href="opencv.html" />
-    <link rel="prev" title="Play with arrays" href="images_arrays.html" /> 
+    <link rel="next" title="Digital Images" href="python.html" />
+    <link rel="prev" title="What is an image ?" href="images_digital.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,16 +50,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Images</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="images.html">     Digital Images</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="python.html">     Python and images</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="images_python.html">     PGM files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="images_arrays.html">     Play with arrays</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">     First transforms</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#convolution-and-morphologic-transforms">02_convolution and morphologic transforms</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="images.html">     Digital Images</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="images_digital.html">     What is an image ?</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">     Image transformation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-a-binarization">What is a binarization ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-a-convolution">What is a convolution ?</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">     Python and images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opencv.html">     OpenCV basic operations</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Basic transforms</span></p>
@@ -83,10 +83,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="python.html">Digital Images</a></li>
-      <li class="breadcrumb-item active">First transforms</li>
+          <li class="breadcrumb-item"><a href="images.html">Digital Images</a></li>
+      <li class="breadcrumb-item active">Image transformations</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/contents/images_transforms.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/contents/images_convol.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -94,15 +94,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="first-transforms">
-<h1>First transforms<a class="headerlink" href="#first-transforms" title="Link to this heading"></a></h1>
-<section id="convolution-and-morphologic-transforms">
-<h2>02_convolution and morphologic transforms<a class="headerlink" href="#convolution-and-morphologic-transforms" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><code class="file docutils literal notranslate"><span class="pre">04_imagePGM_first_convolution</span></code> : introducing the convolution with a kernel. Kernel class.</p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">05_imagePGM_dilate_erode</span></code> : introducing the dilatation and erosion transforms.</p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">06_imagePGM_opening_closing</span></code> : introducing the opening and closing transforms.</p></li>
-</ul>
+  <section id="image-transformations">
+<h1>Image transformations<a class="headerlink" href="#image-transformations" title="Link to this heading"></a></h1>
+<section id="what-is-a-binarization">
+<h2>What is a binarization ?<a class="headerlink" href="#what-is-a-binarization" title="Link to this heading"></a></h2>
+</section>
+<section id="what-is-a-convolution">
+<h2>What is a convolution ?<a class="headerlink" href="#what-is-a-convolution" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -110,8 +108,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="images_arrays.html" class="btn btn-neutral float-left" title="Play with arrays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="opencv.html" class="btn btn-neutral float-right" title="OpenCV: Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="images_digital.html" class="btn btn-neutral float-left" title="What is an image ?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Digital Images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
