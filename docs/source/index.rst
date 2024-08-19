@@ -37,17 +37,29 @@ The GitHub repository of this project : `Image Processing <https://github.com/IO
    :caption: Images
 
 	Digital Images<contents/images>
+	Python and images<contents/python>
 	OpenCV basic operations<contents/opencv>
 
 .. toctree::
    :maxdepth: 1
    :caption: Basic transforms
    
+   	Blur filter<contents/opencv_blur>
+	Erosion, dilation<contents/opencv_erod_dila>
+	Opening, closing<contents/opencv_open_close>
+   
 	
 .. toctree::
    :maxdepth: 1
    :caption: Edge and contours
 
+Sharpening (Laplacian, Unsharp)
+
+Edge detection (Sobel, Canny)
+
+Median blur
+
+Custom (cv2.filter2D)
 
 Projects based on image processing
 ##################################
@@ -58,5 +70,5 @@ Projects based on image processing
 About the LEnsE
 ###############
 
-This is a test.
+The **Experimental Teaching Laboratory** (LEnsE, for Laboratoire d’ENSeignement Expérimental) is a major structure of the Institut d’Optique engineering school. It offers remarkably strong training that contributes **25%** of the total curriculum. It is an impressive structure where students have access to a large diversity of material and human resources to be able to gain the skills to become excellent experimenters recognized in their field.
 

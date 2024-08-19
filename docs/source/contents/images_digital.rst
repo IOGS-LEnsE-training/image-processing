@@ -12,6 +12,8 @@
 .. role:: green
 .. role:: blue
 
+.. _digital-image:
+
 What is an image ?
 ##################
 
@@ -70,7 +72,7 @@ In all cases, a **raster image** is considered by a computer as an **ordered col
 
 When a computer displays an image, it reads the information stored for each pixel and renders them on the screen accordingly. This process involves converting the digital information into visual data that the human eye can perceive.
 
-In an image processing procedure, one of the most frequently used methods is to store the pixels in an **2- or 3-D arrays**, depending on the color space used and how the pixel information is stored (one number for the color or separated number for each component of the color).
+In an image processing procedure, one of the most frequently used methods is to store the pixels in **2- or 3-D arrays**, depending on the color space used and how the pixel information is stored (one number for the color or separated number for each component of the color).
 
 .. figure:: ../_static/images/images_array_gray_rgb.png
     :align: center

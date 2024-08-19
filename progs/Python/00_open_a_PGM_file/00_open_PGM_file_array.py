@@ -11,87 +11,49 @@ Class to represent a PGM image. Using an array to store the data.
 
 import numpy as np
 
-class ImagePGM:
+
+def read_image_PGM(filename: str) -> list:
     """
-    Class to represent a PGM image.
+    Read a PGM image from a file and return its information.
 
-    :param width: Width of the image.
-    :type width: int
-    :param height: Height of the image.
-    :type height: int
-    :param channels: Number of color values for each pixel of the image.
-    :type channels: int
-    :param max_gray_value: Value of the white color.
-    :type max_gray_value: int
-    :param magic_number: Type of the file.
-    :type magic_number: str
-    :param pixels: Value of each pixel.
-    :type pixels: list
+    :param filename: Name of the PGM file.
+    :type filename: str
+
+    :return: A list of the pixels.
+    :rtype: list
+
     """
-    
-    def __init__(self, filename):
-        """
-        Initialize the ImagePGM object.
-
-        Parameters:
-            filename (str): Name of the PGM file.
-        """
-        self.width = 0              # Width of the image
-        self.height = 0             # Height of the image
-        self.channels = 0           # Number of color values for each pixel of the image
-        self.max_gray_value = 0     # Value of the white color
-        self.magic_number = ""      # Type of the file
-        self.pixels = np.array([])  # Value of each pixel
-        self.readImagePGM(filename)
-    
-    def readImagePGM(self, filename):
-        """
-        Read a PGM image from a file and store its information.
-
-        :param filename: Name of the PGM file.
-        :type filename: str
-        
-        :return: True if the file was successfully read, False otherwise.
-        :rtype: bool
-
-        """
-        try:
-            with open(filename, 'r') as f:
-                self.magic_number = f.readline().strip()
-                if self.magic_number != 'P2':
-                    raise ValueError("Invalid PGM file format")
-                # Read the width, height, and maximum gray value
-                self.width, self.height = map(int, f.readline().split())
-                self.max_gray_value = int(f.readline())
-                # Read the image data
-                image_data = []
-                for _ in range(self.height):
-                    row = list(map(int, f.readline().split()))
-                    image_data.extend(row)
-
-                # Convert the image data to a NumPy array
-                self.pixels = np.array(image_data, dtype=np.uint8).reshape((self.height, self.width))
-
-        except FileNotFoundError:
-            print(f"Error: Unable to open file {filename}")
-            return False
-        return True
-
-    def __str__(self):
-        """
-        Return a string representation of the ImagePGM object.
-
-        :return: A string with PGM image informations
-        :rtype: str
-        """
-        return f"Image PGM / Type: {self.magic_number}, (W,H) = ({self.width}, {self.height})"
+    try:
+        with open(filename, 'r') as f:
+            # Read the magic number of the file
+            magic_number = f.readline().strip()
+            if magic_number != 'P2':
+                raise ValueError("Invalid PGM file format")
+                        
+            # Read the width, height, and maximum gray value
+            width, height = map(int, f.readline().split())
+            max_gray_value = int(f.readline())
+            print(f'PGM File\nMagic Number={magic_number}')
+            print(f'W={width} / H={height} / Maximum Gray Value={max_gray_value}')
+            
+            # Lire les valeurs de pixels
+            pixels = []
+            for line in f:
+                pixels.extend(line.split())
+            
+            # Convert the image data to a NumPy array
+            image = np.array(pixels, dtype=int).reshape((height, width))
+            return image
+    except FileNotFoundError:
+        print(f"Error: Unable to open file {filename}")
 
 
 # Main function
 if __name__ == "__main__":
     # Read the input PGM image
-    image = ImagePGM("../../_data/robot.pgm")
+    image = read_image_PGM("../../_data/robot.pgm")
+    print(type(image))
+    print(image.shape)
 
-    print("Infos")
-    print(image)
-    print(type(image.pixels))
+    print(image[58])
+    print(image[50, 96])
