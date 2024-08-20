@@ -83,6 +83,9 @@ The :code:`erode` function performs erosion on the given image using a specified
 This function returns an array with the same shape as the initial image. You can then display the image with the standard :code:`imshow` function
 of OpenCV.
 
+Results
+=======
+
 .. figure:: ../_static/images/images_erosion_cross.png
    :align: center
 
@@ -101,3 +104,23 @@ Dilation Operation
 Dilation adds pixels to the boundaries of objects, effectively expanding them. It is used to **fill in small holes and gaps** and to connect adjacent objects.
 
 For each pixel, the kernel is centered on the pixel, and the pixel is set to the maximum value covered by the kernel. If any part of the kernel overlaps a foreground pixel, the central pixel is set to foreground.
+
+Dilation with OpenCV
+====================
+
+The :code:`erode` function performs erosion on the given image using a specified kernel.
+
+.. code-block:: python
+
+    eroded_image_cross_9 = cv2.erode(grayscale_image, cross_kernel_9, iterations=1)
+
+This function returns an array with the same shape as the initial image. You can then display the image with the standard :code:`imshow` function
+of OpenCV.
+
+Results
+=======
+
+.. figure:: ../_static/images/images_dilation_cross.png
+   :align: center
+
+   Example of dilation operation on an image (Cross kernel of size 9).

@@ -37,7 +37,19 @@ if __name__ == "__main__":
     cv2.imshow("Cross Kernel Erosion - 5x5", eroded_image_cross_5)
     cv2.imshow("Square Kernel Erosion - 9x9", eroded_image_square)
     cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
+
+    ## Dilation
+    dilated_image_cross_9 = cv2.dilate(grayscale_image, cross_kernel_9, iterations=1)
+    dilated_image_cross_5 = cv2.dilate(grayscale_image, cross_kernel_5, iterations=1)
+    dilated_image_square = cv2.dilate(grayscale_image, square_kernel, iterations=1)
+
+    cv2.imshow("Original Image", grayscale_image)
+    cv2.imshow("Cross Kernel Dilation - 9x9", dilated_image_cross_9)
+    cv2.imshow("Cross Kernel Dilation - 5x5", dilated_image_cross_5)
+    cv2.imshow("Square Kernel Dilation - 9x9", dilated_image_square)
+    cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     print(grayscale_image.shape)
