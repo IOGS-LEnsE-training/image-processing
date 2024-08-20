@@ -65,9 +65,14 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#erosion-operation">Erosion Operation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#erosion-with-opencv">Erosion with OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#dilation-operation">Dilation Operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dilation-operation">Dilation Operation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dilation-with-opencv">Dilation with OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Results</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="opencv_open_close.html">     Opening, closing</a></li>
@@ -101,10 +106,10 @@
 <h1>Erosion and dilation<a class="headerlink" href="#erosion-and-dilation" title="Link to this heading"></a></h1>
 <p>In <strong>image processing</strong>, erosion and dilation are fundamental morphological operations that modify the shape and
 structure of objects in a binary image. Both operations use a kernel, also known as a structuring element, to define the neighborhood of pixels that influence the process. The choice of kernel affects how the erosion and dilation operations are applied to the image.</p>
-<figure class="align-center" id="id1">
+<figure class="align-center" id="id2">
 <img alt="../_images/images_erosion.png" src="../_images/images_erosion.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Example of erosion operation on an image (Square kernel of size 9).</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Example of erosion operation on an image (Square kernel of size 9).</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="admonition note">
@@ -158,16 +163,19 @@ to <strong>eliminate small noise</strong> and detach connected objects.</p>
 </div>
 <p>This function returns an array with the same shape as the initial image. You can then display the image with the standard <code class="code docutils literal notranslate"><span class="pre">imshow</span></code> function
 of OpenCV.</p>
-<figure class="align-center" id="id2">
+</section>
+<section id="results">
+<h3>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id3">
 <img alt="../_images/images_erosion_cross.png" src="../_images/images_erosion_cross.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Example of erosion operation on an image (Cross kernel of size 5 on the left and 9 on the right).</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Example of erosion operation on an image (Cross kernel of size 5 on the left and 9 on the right).</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id4">
 <img alt="../_images/images_erosion_cross_square.png" src="../_images/images_erosion_cross_square.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Comparison of erosion operation on an image (Cross kernel of size 9 on the left and square kernell of size 9 on the right).</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Comparison of erosion operation on an image (Cross kernel of size 9 on the left and square kernell of size 9 on the right).</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -176,6 +184,24 @@ of OpenCV.</p>
 <h2>Dilation Operation<a class="headerlink" href="#dilation-operation" title="Link to this heading"></a></h2>
 <p>Dilation adds pixels to the boundaries of objects, effectively expanding them. It is used to <strong>fill in small holes and gaps</strong> and to connect adjacent objects.</p>
 <p>For each pixel, the kernel is centered on the pixel, and the pixel is set to the maximum value covered by the kernel. If any part of the kernel overlaps a foreground pixel, the central pixel is set to foreground.</p>
+<section id="dilation-with-opencv">
+<h3>Dilation with OpenCV<a class="headerlink" href="#dilation-with-opencv" title="Link to this heading"></a></h3>
+<p>The <code class="code docutils literal notranslate"><span class="pre">erode</span></code> function performs erosion on the given image using a specified kernel.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eroded_image_cross_9</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">erode</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">cross_kernel_9</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function returns an array with the same shape as the initial image. You can then display the image with the standard <code class="code docutils literal notranslate"><span class="pre">imshow</span></code> function
+of OpenCV.</p>
+</section>
+<section id="id1">
+<h3>Results<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id5">
+<img alt="../_images/images_dilation_cross.png" src="../_images/images_dilation_cross.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Example of dilation operation on an image (Cross kernel of size 9).</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 </section>
 
