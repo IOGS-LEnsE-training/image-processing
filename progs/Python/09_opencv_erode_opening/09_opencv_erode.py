@@ -11,7 +11,10 @@ File containing a set of instructions to process erosion and dilation operations
 """
 
 import cv2
+import sys
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 # Main function
 if __name__ == "__main__":
@@ -21,6 +24,9 @@ if __name__ == "__main__":
     # Display the image
     cv2.imshow('Original Grayscale Image', grayscale_image)
     cv2.waitKey(0)
+
+    print(f'Size in bytes (RGB) : {sys.getsizeof(image)}')
+    print(f'Size in bytes (Grayscale) : {sys.getsizeof(grayscale_image)}')
 
     ## Kernels
     cross_kernel_9 = cv2.getStructuringElement(cv2.MORPH_CROSS, (9, 9))
@@ -54,4 +60,25 @@ if __name__ == "__main__":
 
     print(grayscale_image.shape)
     print(eroded_image_cross_9.shape)
+
+
+    ## Comparison of histograms
+    cross_kernel_15 = cv2.getStructuringElement(cv2.MORPH_CROSS, (21, 21))
+    dilated_image_cross_15 = cv2.dilate(grayscale_image, cross_kernel_15, iterations=1)
+    eroded_image_cross_15 = cv2.erode(grayscale_image, cross_kernel_15, iterations=1)
+    plt.figure()
+    plt.title("Histogram of images - Cross kernel 21x21 ")
+    plt.xlabel("Pixel Value")
+    plt.ylabel("Frequency")
+    # Original
+    flattened_image = grayscale_image.flatten()
+    plt.hist(flattened_image, bins=256, range=(0, 255), color='gray', label="Grayscale Image")
+    # Dilated
+    flattened_image = dilated_image_cross_15.flatten()
+    plt.hist(flattened_image, bins=256, range=(0, 255), color='blue', alpha=0.7, label="Dilation operation")
+    # Eroded
+    flattened_image = eroded_image_cross_15.flatten()
+    plt.hist(flattened_image, bins=256, range=(0, 255), color='red', alpha=0.7, label="Erosion operation")
+    plt.legend()
+    plt.show()
 
