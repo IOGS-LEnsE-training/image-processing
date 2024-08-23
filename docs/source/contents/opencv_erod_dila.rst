@@ -11,7 +11,7 @@ structure of objects in a binary image. Both operations use a kernel, also known
 
 .. note::
 
-    The code of this example is in the :file:`\\progs\\Python\\09_opencv_erode_opening\\09_opencv_erode.py` file of the repository.
+    The code of this example is in the :file:`\\progs\\Python\\09_opencv_erode\\09_opencv_erode.py` file of the repository.
 
     Examples of images are stored in :file:`\\_data\\` directory of the repository.
 
