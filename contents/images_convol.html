@@ -56,6 +56,19 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">     Image transformation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-a-binarization">What is a binarization ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-a-convolution">What is a convolution ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-operations">Filtering Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-it-works">How It Works</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-types-of-filters">Common Types of Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#morphological-operations">Morphological Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">How It Works</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-morphological-operations">Common Morphological Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#effect">Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#other-ressource">Other ressource</a></li>
 </ul>
 </li>
@@ -103,6 +116,54 @@
 </section>
 <section id="what-is-a-convolution">
 <h2>What is a convolution ?<a class="headerlink" href="#what-is-a-convolution" title="Link to this heading"></a></h2>
+<p>No, filtering operations such as mean filtering are not considered morphological operations. They are part of a different category of image processing techniques known as spatial filtering or convolutional filtering.</p>
+</section>
+<section id="filtering-operations">
+<h2>Filtering Operations<a class="headerlink" href="#filtering-operations" title="Link to this heading"></a></h2>
+<section id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h3>
+<p>Filtering operations like mean filtering (or averaging) are used to smooth images, reduce noise, and sometimes enhance specific features such as edges.</p>
+</section>
+<section id="how-it-works">
+<h3>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading"></a></h3>
+<p>Mean filtering involves convolving an image with a filter kernel (e.g., a 3x3 matrix where each value is
+1/9). This operation computes the average of the pixel values within the kernel’s neighborhood and assigns this average to the central pixel.</p>
+</section>
+<section id="common-types-of-filters">
+<h3>Common Types of Filters<a class="headerlink" href="#common-types-of-filters" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Mean Filter</strong>: Reduces noise by averaging the pixel values in the neighborhood.</p></li>
+<li><p><strong>Gaussian Filter</strong>: Applies a Gaussian function for weighted averaging, often used for blurring.</p></li>
+<li><p><strong>Median Filter</strong>: Replaces the central pixel with the median of the neighborhood values, effective at reducing salt-and-pepper noise.</p></li>
+</ul>
+</section>
+</section>
+<section id="morphological-operations">
+<h2>Morphological Operations<a class="headerlink" href="#morphological-operations" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Purpose<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Morphological operations are used to process the shape or structure of objects within an image, such as
+removing noise, separating objects, filling gaps, and enhancing object boundaries.</p>
+</section>
+<section id="id2">
+<h3>How It Works<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>These operations rely on the interaction between an image and a structuring element (kernel). The
+operations focus on modifying the geometry of objects based on the shape and size of the structuring element.</p>
+</section>
+<section id="common-morphological-operations">
+<h3>Common Morphological Operations<a class="headerlink" href="#common-morphological-operations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Erosion</strong>: Removes pixels on object boundaries, shrinking the objects.</p></li>
+<li><p><strong>Dilation</strong>: Adds pixels to object boundaries, expanding the objects.</p></li>
+<li><p><strong>Opening</strong>: Erosion followed by dilation, used to remove small objects/noise.</p></li>
+<li><p><strong>Closing</strong>: Dilation followed by erosion, used to close small holes/gaps.</p></li>
+</ul>
+</section>
+<section id="effect">
+<h3>Effect<a class="headerlink" href="#effect" title="Link to this heading"></a></h3>
+<p>Alters the shape of objects in the image without averaging pixel values; instead, it manipulates the binary or
+grayscale structure of the image.</p>
+</section>
 </section>
 <section id="other-ressource">
 <h2>Other ressource<a class="headerlink" href="#other-ressource" title="Link to this heading"></a></h2>

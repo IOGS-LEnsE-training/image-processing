@@ -58,7 +58,16 @@
 <li class="toctree-l1"><a class="reference internal" href="opencv_blur.html">     Blur filter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opencv_erod_dila.html">     Erosion, dilation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">     Opening, closing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#level-1">Level 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opening-operation">Opening Operation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-it-works">How it Works</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#closing-operation">Closing Operation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">How it Works</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -89,8 +98,39 @@
              
   <section id="opening-and-closing">
 <h1>Opening and closing<a class="headerlink" href="#opening-and-closing" title="Link to this heading"></a></h1>
-<section id="level-1">
-<h2>Level 1<a class="headerlink" href="#level-1" title="Link to this heading"></a></h2>
+<p>Opening and closing <strong>morphological operations</strong> are fundamental techniques used in
+image processing, primarily for manipulating binary or grayscale images. These operations involve applying a structuring element (or kernel) to an image, and they are typically used for noise removal, shape extraction, and image enhancement.</p>
+<section id="opening-operation">
+<h2>Opening Operation<a class="headerlink" href="#opening-operation" title="Link to this heading"></a></h2>
+<p>Definition: Opening is the process of eroding an image first and then dilating the eroded image. It’s denoted as A ∘ B, where A is the image and B is the structuring element (kernel).</p>
+<section id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h3>
+<p>Removes small objects or noise from the foreground (white regions in a binary image).
+Helps in separating connected objects in an image.</p>
+</section>
+<section id="how-it-works">
+<h3>How it Works<a class="headerlink" href="#how-it-works" title="Link to this heading"></a></h3>
+<p>Erosion: Shrinks the foreground objects by eroding the boundaries.
+Dilation: Expands the eroded objects, restoring the size of the remaining objects after erosion.
+Result: Small white regions (noise) are removed, and the shape of the larger objects is preserved.</p>
+<p>Use Case: Cleaning up noise in binary images.</p>
+</section>
+</section>
+<section id="closing-operation">
+<h2>Closing Operation<a class="headerlink" href="#closing-operation" title="Link to this heading"></a></h2>
+<p>Definition: Closing is the reverse of opening. It first dilates the image and then erodes it. It’s denoted as A • B, where A is the image and B is the structuring element (kernel).</p>
+<section id="id1">
+<h3>Purpose<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Closes small holes or gaps in the foreground (white regions in a binary image).
+Connects or “fills” small breaks in the objects.</p>
+</section>
+<section id="id2">
+<h3>How it Works<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>Dilation: Expands the foreground objects by enlarging the boundaries.
+Erosion: Shrinks the dilated objects back to their original size, but with small holes or gaps filled.
+Result: Small black regions (holes) within the objects are removed, and small gaps between objects are closed.</p>
+<p>Use Case: Filling small holes and connecting close objects.</p>
+</section>
 </section>
 </section>
 
