@@ -71,6 +71,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#binarize-an-image">Binarize an image</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#histogram-of-an-image">Histogram of an image</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calculate-the-histogram">Calculate the histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#display-the-histogram">Display the histogram</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -230,7 +235,7 @@
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../_images/images_crop_numpy.png"><img alt="../_images/images_crop_numpy.png" src="../_images/images_crop_numpy.png" style="width: 881.6px; height: 429.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Example of image cropping: on the left the original image, on the right the cropped image around the robot wheel.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Example of image cropping: on the left the original image, on the right the cropped image around the robot wheel.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>For this example, we used the following code:</p>
@@ -275,7 +280,7 @@ art and Image Stylization…</p>
 <figure class="align-center" id="id2">
 <img alt="../_images/images_threshold.png" src="../_images/images_threshold.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Example of image binarization.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Example of image binarization.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Besides <em>THRESH_BINARY</em>, OpenCV offers other thresholding methods:</p>
@@ -285,6 +290,78 @@ art and Image Stylization…</p>
 <li><p><em>THRESH_TOZERO</em>: Sets pixels below the threshold to zero</p></li>
 <li><p><em>THRESH_TOZERO_INV</em>: Sets pixels above the threshold to zero.</p></li>
 </ul>
+</section>
+</section>
+<section id="histogram-of-an-image">
+<h2>Histogram of an image<a class="headerlink" href="#histogram-of-an-image" title="Link to this heading"></a></h2>
+<p>A histogram of an image provides a <strong>visual summary of the tonal distribution</strong> of the image, making it easier to analyze and adjust image properties like contrast and brightness.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/images_histogram.png" src="../_images/images_histogram.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Image (top) and its histogram (bottom).</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The code of this example is in the <code class="file docutils literal notranslate"><span class="pre">\progs\Python\07_opencv_first_try\07_opencv_histo.py</span></code> file of the repository.</p>
+<p>Examples of images are stored in <code class="file docutils literal notranslate"><span class="pre">\_data\</span></code> directory of the repository.</p>
+</div>
+<section id="calculate-the-histogram">
+<h3>Calculate the histogram<a class="headerlink" href="#calculate-the-histogram" title="Link to this heading"></a></h3>
+<p>The <code class="code docutils literal notranslate"><span class="pre">calcHist</span></code> function of OpenCV allows to perform a binarization of a grayscale image.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="p">[</span><span class="n">chan</span><span class="p">],</span> <span class="n">Mask</span><span class="p">,</span> <span class="p">[</span><span class="n">bins_nb</span><span class="p">],</span> <span class="p">[</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>It requires several parameters to process the histogram of an image:</p>
+<ul class="simple">
+<li><p><strong>image</strong>: ndarray containing the data of one channel of an image</p></li>
+<li><p><strong>chan</strong>: the channel for which the histogram is calculated. In the case of a grayscale image, there’s only one channel (called 0).</p></li>
+<li><p><strong>mask</strong>: to use a mask on the image to calculate the histogram only on a part of the image. If None, the histogram is calculated on the entire image.</p></li>
+<li><p><strong>bins_nb</strong>: Number of bins. In a grayscale image (8-bits), pixel values range from 0 to 255, so there are 256 bins.</p></li>
+<li><p><strong>min, max</strong>: The range of pixel values (from 0 to 256 - not included - in the case of a 8-bits grayscale image).</p></li>
+</ul>
+<p>For a 8-bits grayscale image, you can use this instruction to calculate the histogram on the entire image:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The output is an <strong>array</strong> (numpy.ndarray) with a shape of (256, 1). Each column of this array contains the amount of pixels in the image corresponding to the gray value of its index. For example, The 10th box (histogram[10]) in the array corresponds to the number of occurrences of the grayscale value 10.</p>
+</section>
+<section id="display-the-histogram">
+<h3>Display the histogram<a class="headerlink" href="#display-the-histogram" title="Link to this heading"></a></h3>
+<p>To display the histogram, you can use the standard functions to display the value contained in a ndarray.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Grayscale Image Histogram&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Pixel Intensity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Pixels&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">histogram</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>  <span class="c1"># Limits for the x-axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This set of instructions gives this result:</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/images_histogram_plt.png" src="../_images/images_histogram_plt.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Histogram of the “robot” image (see the original image at the beggining of this section).</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>To obtain a histogram in a bar mode, you can use this set of instructions (see the resulting histogram at the beggining of this section):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Grayscale Image Histogram&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Pixel Intensity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Pixels&quot;</span><span class="p">)</span>
+<span class="c1"># Create a range of values (0 to 255) for the x-axis</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+<span class="c1"># Plot the histogram as bars</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">histogram</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>  <span class="c1"># Limits for the x-axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histogram of an image &mdash; Image processing 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/lense-training.css?v=a3237747" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/links.css?v=7a4609b2" />
+      <link rel="stylesheet" type="text/css" href="https://iogs-lense.github.io/lense.tech/assets/css/fontawesome/css/all.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Image transformations" href="images_convol.html" />
+    <link rel="prev" title="What is an image ?" href="images_digital.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Image processing
+              <img src="../_static/logo-training_git.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Images</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="images.html">     Digital Images</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="images_digital.html">     What is an image ?</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">     Histogram of an image</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#key-components-of-an-histogram">Key components of an histogram</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#x-axis-intensity-levels">X-Axis (Intensity Levels)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#y-axis-frequency-of-pixels">Y-Axis (Frequency of Pixels)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#purpose-and-application-of-a-histogram">Purpose and application of a histogram</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contrast">Contrast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#brightness">Brightness</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exposure">Exposure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-in-practice">Example in Practice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="images_convol.html">     Image transformation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">     Python and images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv.html">     OpenCV basic operations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Basic transforms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="opencv_blur.html">     Blur filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv_erod_dila.html">     Erosion, dilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv_open_close.html">     Opening, closing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Image processing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="images.html">Digital Images</a></li>
+      <li class="breadcrumb-item active">Histogram of an image</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contents/images_histo.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="histogram-of-an-image">
+<h1>Histogram of an image<a class="headerlink" href="#histogram-of-an-image" title="Link to this heading"></a></h1>
+<p>A histogram of an image is a <strong>graphical representation</strong> that shows the <strong>distribution of pixel intensity values</strong> in that image. It plots the number of pixels for each intensity level, ranging from 0 to 255 in an 8-bit grayscale image (where 0 represents black and 255 represents white).</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/images_histogram.png" src="../_images/images_histogram.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Image (top) and its histogram (bottom).</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="key-components-of-an-histogram">
+<h2>Key components of an histogram<a class="headerlink" href="#key-components-of-an-histogram" title="Link to this heading"></a></h2>
+<section id="x-axis-intensity-levels">
+<h3>X-Axis (Intensity Levels)<a class="headerlink" href="#x-axis-intensity-levels" title="Link to this heading"></a></h3>
+<p>The X-Axis represents the possible pixel intensity values.</p>
+<p>For grayscale images, it goes from 0 (black) to 255 (white).</p>
+<p>For color images (RGB), there are 3 separated histograms for Red, Green, and Blue channels, each ranging from 0 to 255.</p>
+</section>
+<section id="y-axis-frequency-of-pixels">
+<h3>Y-Axis (Frequency of Pixels)<a class="headerlink" href="#y-axis-frequency-of-pixels" title="Link to this heading"></a></h3>
+<p>The Y-Axis represents the number of pixels in the image that have each specific intensity value.</p>
+<p>The height of each bar in the histogram shows how many pixels in the image have that particular intensity.</p>
+</section>
+</section>
+<section id="purpose-and-application-of-a-histogram">
+<h2>Purpose and application of a histogram<a class="headerlink" href="#purpose-and-application-of-a-histogram" title="Link to this heading"></a></h2>
+<section id="contrast">
+<h3>Contrast<a class="headerlink" href="#contrast" title="Link to this heading"></a></h3>
+<p>A histogram can help assess the contrast of an image. A wide spread of pixel values across the histogram usually indicates good contrast, while a narrow spread might indicate low contrast.</p>
+</section>
+<section id="brightness">
+<h3>Brightness<a class="headerlink" href="#brightness" title="Link to this heading"></a></h3>
+<p>The position of the histogram can indicate the brightness. If the histogram is skewed to the right, the image is likely brighter; skewed to the left, it’s darker.</p>
+</section>
+<section id="exposure">
+<h3>Exposure<a class="headerlink" href="#exposure" title="Link to this heading"></a></h3>
+<p>A histogram can help identify overexposed or underexposed areas in an image. A histogram bunched up on the left indicates underexposure, while a bunch on the right suggests overexposure.</p>
+</section>
+<section id="example-in-practice">
+<h3>Example in Practice<a class="headerlink" href="#example-in-practice" title="Link to this heading"></a></h3>
+<p>IMAGES ?</p>
+<p>High Contrast Image: The histogram will have pixel values spread out across the entire range.</p>
+<p>Low Contrast Image: The histogram will be narrow, with pixel values clustered around a central range.</p>
+<p>Bright Image: The histogram will be skewed to the right.</p>
+<p>Dark Image: The histogram will be skewed to the left.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="images_digital.html" class="btn btn-neutral float-left" title="What is an image ?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="images_convol.html" class="btn btn-neutral float-right" title="Image transformations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Julien Villemejane.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

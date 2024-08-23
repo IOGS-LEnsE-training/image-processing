@@ -224,3 +224,89 @@ Besides *THRESH_BINARY*, OpenCV offers other thresholding methods:
 - *THRESH_TRUNC*: Truncates pixel values above the threshold
 - *THRESH_TOZERO*: Sets pixels below the threshold to zero
 - *THRESH_TOZERO_INV*: Sets pixels above the threshold to zero.
+
+
+Histogram of an image
+*********************
+
+A histogram of an image provides a **visual summary of the tonal distribution** of the image, making it easier to analyze and adjust image properties like contrast and brightness.
+
+.. figure:: ../_static/images/images_histogram.png
+   :align: center
+
+   Image (top) and its histogram (bottom).
+
+.. note::
+
+    The code of this example is in the :file:`\\progs\\Python\\07_opencv_first_try\\07_opencv_histo.py` file of the repository.
+
+    Examples of images are stored in :file:`\\_data\\` directory of the repository.
+
+Calculate the histogram
+=======================
+
+The :code:`calcHist` function of OpenCV allows to perform a binarization of a grayscale image.
+
+.. code-block:: python
+	
+	cv2.calcHist([image], [chan], Mask, [bins_nb], [min, max])
+
+It requires several parameters to process the histogram of an image:
+
+- **image**: ndarray containing the data of one channel of an image
+- **chan**: the channel for which the histogram is calculated. In the case of a grayscale image, there's only one channel (called 0).
+- **mask**: to use a mask on the image to calculate the histogram only on a part of the image. If None, the histogram is calculated on the entire image.
+- **bins_nb**: Number of bins. In a grayscale image (8-bits), pixel values range from 0 to 255, so there are 256 bins.
+- **min, max**: The range of pixel values (from 0 to 256 - not included - in the case of a 8-bits grayscale image).
+
+For a 8-bits grayscale image, you can use this instruction to calculate the histogram on the entire image:
+
+.. code-block:: python
+	
+	histogram = cv2.calcHist([image], [0], None, [256], [0, 256])
+
+The output is an **array** (numpy.ndarray) with a shape of (256, 1). Each column of this array contains the amount of pixels in the image corresponding to the gray value of its index. For example, The 10th box (histogram[10]) in the array corresponds to the number of occurrences of the grayscale value 10.
+
+
+Display the histogram
+=======================
+
+To display the histogram, you can use the standard functions to display the value contained in a ndarray.
+
+.. code-block:: python
+	
+	histogram = cv2.calcHist([image], [0], None, [256], [0, 256])
+	
+	plt.figure()
+	plt.title("Grayscale Image Histogram")
+	plt.xlabel("Pixel Intensity")
+	plt.ylabel("Number of Pixels")
+	plt.plot(histogram)
+	plt.xlim([0, 256])  # Limits for the x-axis
+	plt.show()
+
+This set of instructions gives this result:	
+
+.. figure:: ../_static/images/images_histogram_plt.png
+   :align: center
+
+   Histogram of the "robot" image (see the original image at the beggining of this section).
+
+
+To obtain a histogram in a bar mode, you can use this set of instructions (see the resulting histogram at the beggining of this section):
+
+.. code-block:: python
+	
+	histogram = cv2.calcHist([image], [0], None, [256], [0, 256])
+
+	plt.figure()
+	plt.title("Grayscale Image Histogram")
+	plt.xlabel("Pixel Intensity")
+	plt.ylabel("Number of Pixels")
+	# Create a range of values (0 to 255) for the x-axis
+	x = np.arange(256)
+	# Plot the histogram as bars
+	plt.bar(x, histogram[:,0], width=1, color='black') 
+	plt.xlim([0, 256])  # Limits for the x-axis
+	plt.show()
+	
