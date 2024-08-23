@@ -13,4 +13,5 @@ This section deals with digital images and how computer can store their informat
    :maxdepth: 1
 
 	What is an image ?<images_digital>
+	Histogram of an image<images_histo>
 	Image transformation<images_convol>
