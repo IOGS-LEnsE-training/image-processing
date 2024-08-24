@@ -48,20 +48,15 @@ if __name__ == "__main__":
     binary_image_normalized = binary_image2 // 255
 
 
-    kernel = np.ones((5,5), np.uint8)
+    kernel = np.ones((9,9), np.uint8)
     # Closing / Opening
     opening = cv2.morphologyEx(binary_image_normalized, cv2.MORPH_OPEN, kernel)
     closing = cv2.morphologyEx(binary_image_normalized, cv2.MORPH_CLOSE, kernel)
 
-
     # Display the result
-    high_res_image = cv2.resize(binary_image_normalized, (400, 400))
-    high_res_image_op = cv2.resize(opening, (400, 400))
-    high_res_image_cl = cv2.resize(closing, (400, 400))
-
-    cv2.imshow('Original Image', high_res_image*255)
-    cv2.imshow('Opening Result', high_res_image_op*255)
-    cv2.imshow('Closing Result', high_res_image_cl*255)
+    cv2.imshow('Original Image', binary_image_normalized*255)
+    cv2.imshow('Opening Result', opening*255)
+    cv2.imshow('Closing Result', closing*255)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
