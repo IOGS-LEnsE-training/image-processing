@@ -79,7 +79,14 @@ The firt value is the height, the second one the width and the third one is the 
 .. note::
 
 	Even if the image is stored in a grayscale format, the :code:`imread` function of OpenCV create a 3 channels image (R, G, B). In the case of a grayscale format, the 3 channels are exactly the same.
+	
+You can also open an image in a GrayScale mode, with the following instruction:
 
+.. code-block:: python
+
+	image = cv2.imread('path/to/your/image.jpg', cv2.LOAD_IMAGE_GRAYSCALE)
+
+In this case, the output array has only one channel.
 
 Display an image
 ================

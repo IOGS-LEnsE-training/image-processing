@@ -175,6 +175,11 @@
 <p class="admonition-title">Note</p>
 <p>Even if the image is stored in a grayscale format, the <code class="code docutils literal notranslate"><span class="pre">imread</span></code> function of OpenCV create a 3 channels image (R, G, B). In the case of a grayscale format, the 3 channels are exactly the same.</p>
 </div>
+<p>You can also open an image in a GrayScale mode, with the following instruction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;path/to/your/image.jpg&#39;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">LOAD_IMAGE_GRAYSCALE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this case, the output array has only one channel.</p>
 </section>
 <section id="display-an-image">
 <h3>Display an image<a class="headerlink" href="#display-an-image" title="Link to this heading"></a></h3>
