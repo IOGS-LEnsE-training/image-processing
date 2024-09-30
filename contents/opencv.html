@@ -76,6 +76,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#display-the-histogram">Display the histogram</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#enhance-the-image-contrast-and-brightness">Enhance the image (contrast and brightness)</a></li>
 </ul>
 </li>
 </ul>
@@ -368,6 +369,14 @@ art and Image Stylization…</p>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="enhance-the-image-contrast-and-brightness">
+<h2>Enhance the image (contrast and brightness)<a class="headerlink" href="#enhance-the-image-contrast-and-brightness" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">image2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">convertScaleAbs</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
