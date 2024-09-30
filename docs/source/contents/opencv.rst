@@ -317,3 +317,11 @@ To obtain a histogram in a bar mode, you can use this set of instructions (see t
 	plt.xlim([0, 256])  # Limits for the x-axis
 	plt.show()
 	
+Enhance the image (contrast and brightness)
+*******************************************
+
+.. code-block:: python
+	
+	alpha = 1.5
+	beta = 50
+	image2 = cv2.convertScaleAbs(image, alpha=alpha, beta=beta) 
