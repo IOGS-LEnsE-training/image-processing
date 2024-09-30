@@ -108,11 +108,11 @@ For each pixel, the kernel is centered on the pixel, and the pixel is set to the
 Dilation with OpenCV
 ====================
 
-The :code:`erode` function performs erosion on the given image using a specified kernel.
+The :code:`dilate` function performs dilation on the given image using a specified kernel.
 
 .. code-block:: python
 
-    eroded_image_cross_9 = cv2.erode(grayscale_image, cross_kernel_9, iterations=1)
+    dilated_image_cross_9 = cv2.dilate(grayscale_image, cross_kernel_9, iterations=1)
 
 This function returns an array with the same shape as the initial image. You can then display the image with the standard :code:`imshow` function
 of OpenCV.

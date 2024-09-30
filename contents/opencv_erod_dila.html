@@ -186,8 +186,8 @@ of OpenCV.</p>
 <p>For each pixel, the kernel is centered on the pixel, and the pixel is set to the maximum value covered by the kernel. If any part of the kernel overlaps a foreground pixel, the central pixel is set to foreground.</p>
 <section id="dilation-with-opencv">
 <h3>Dilation with OpenCV<a class="headerlink" href="#dilation-with-opencv" title="Link to this heading"></a></h3>
-<p>The <code class="code docutils literal notranslate"><span class="pre">erode</span></code> function performs erosion on the given image using a specified kernel.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eroded_image_cross_9</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">erode</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">cross_kernel_9</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<p>The <code class="code docutils literal notranslate"><span class="pre">dilate</span></code> function performs dilation on the given image using a specified kernel.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dilated_image_cross_9</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">dilate</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">cross_kernel_9</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This function returns an array with the same shape as the initial image. You can then display the image with the standard <code class="code docutils literal notranslate"><span class="pre">imshow</span></code> function
