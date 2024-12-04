@@ -84,7 +84,7 @@ You can also open an image in a GrayScale mode, with the following instruction:
 
 .. code-block:: python
 
-	image = cv2.imread('path/to/your/image.jpg', cv2.LOAD_IMAGE_GRAYSCALE)
+	image = cv2.imread('path/to/your/image.jpg', cv2.IMREAD_GRAYSCALE)
 
 In this case, the output array has only one channel.
 
