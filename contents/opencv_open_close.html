@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Opening and closing &mdash; Image processing 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/css/lense-training.css?v=a3237747" />
       <link rel="stylesheet" type="text/css" href="../_static/css/links.css?v=7a4609b2" />
@@ -59,11 +59,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#opening-operation">Opening Operation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-it-works">How it Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opening-with-opencv">Opening with OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#closing-operation">Closing Operation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Purpose</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">How it Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#closing-with-opencv">Closing with OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -113,6 +117,28 @@ Dilation: Expands the eroded objects, restoring the size of the remaining object
 Result: Small white regions (noise) are removed, and the shape of the larger objects is preserved.</p>
 <p>Use Case: Cleaning up noise in binary images.</p>
 </section>
+<section id="opening-with-opencv">
+<h3>Opening with OpenCV<a class="headerlink" href="#opening-with-opencv" title="Link to this heading"></a></h3>
+<p>This morphological operation require a kernel (or structuring elements) to process.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">morphologyEx</span></code> function performs different kinds of
+morphological operations on the given image using a specified kernel. The
+<code class="code docutils literal notranslate"><span class="pre">cv2.MORPH_OPEN</span></code> option processes an opening effect on the image.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_opening</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_OPEN</span><span class="p">,</span> <span class="n">cross_kernel_3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function returns an array with the same shape as the initial image.
+You can then display the image with the standard <code class="code docutils literal notranslate"><span class="pre">imshow</span></code> function
+of OpenCV.</p>
+</section>
+<section id="results">
+<h3>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id4">
+<img alt="../_images/images_opening_cross_3.png" src="../_images/images_opening_cross_3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Example of opening (morphological) operation on an image (Cross kernel of size 3).</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 <section id="closing-operation">
 <h2>Closing Operation<a class="headerlink" href="#closing-operation" title="Link to this heading"></a></h2>
@@ -128,6 +154,29 @@ Connects or “fills” small breaks in the objects.</p>
 Erosion: Shrinks the dilated objects back to their original size, but with small holes or gaps filled.
 Result: Small black regions (holes) within the objects are removed, and small gaps between objects are closed.</p>
 <p>Use Case: Filling small holes and connecting close objects.</p>
+</section>
+<section id="closing-with-opencv">
+<h3>Closing with OpenCV<a class="headerlink" href="#closing-with-opencv" title="Link to this heading"></a></h3>
+<p>This morphological operation require a kernel (or structuring elements)
+to process.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">morphologyEx</span></code> function performs different kinds of
+morphological operations on the given image using a specified kernel. The
+<code class="code docutils literal notranslate"><span class="pre">cv2.MORPH_CLOSE</span></code> option processes a closing effect on the image.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_opening</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_CLOSE</span><span class="p">,</span> <span class="n">cross_kernel_3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function returns an array with the same shape as the initial image.
+You can then display the image with the standard <code class="code docutils literal notranslate"><span class="pre">imshow</span></code> function
+of OpenCV.</p>
+</section>
+<section id="id3">
+<h3>Results<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id5">
+<img alt="../_images/images_closing_cross_3.png" src="../_images/images_closing_cross_3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Example of closing (morphological) operation on an image (Cross kernel of size 3).</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 </section>

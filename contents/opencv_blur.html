@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blur filtering with OpenCV &mdash; Image processing 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/css/lense-training.css?v=a3237747" />
       <link rel="stylesheet" type="text/css" href="../_static/css/links.css?v=7a4609b2" />
@@ -177,13 +177,13 @@ the image. It determines the type and extent of the effect (like blurring, sharp
 <section id="comparison-between-rgb-and-grayscale-images">
 <h2>Comparison between RGB and Grayscale images<a class="headerlink" href="#comparison-between-rgb-and-grayscale-images" title="Link to this heading"></a></h2>
 <p>We can compare the execution time of the blur process applied on the original RGB picture and on its grayscaled version by using this code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">timeit</span>
 <span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
 <span class="c1"># Blur on a grayscale image</span>
-<span class="k">def</span> <span class="nf">grayscale_process</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">grayscale_process</span><span class="p">():</span>
     <span class="n">blurred_image15g</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="c1"># Blur on a RGB image</span>
-<span class="k">def</span> <span class="nf">rgb_process</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rgb_process</span><span class="p">():</span>
     <span class="n">blurred_image15g</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Measure execution times</span>

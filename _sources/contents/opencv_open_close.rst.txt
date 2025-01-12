@@ -24,6 +24,32 @@ Result: Small white regions (noise) are removed, and the shape of the larger obj
 
 Use Case: Cleaning up noise in binary images.
 
+Opening with OpenCV
+===================
+
+This morphological operation require a kernel (or structuring elements) to process.
+
+The :code:`morphologyEx` function performs different kinds of 
+morphological operations on the given image using a specified kernel. The
+:code:`cv2.MORPH_OPEN` option processes an opening effect on the image.
+
+.. code-block:: python
+
+	image_opening = cv2.morphologyEx(grayscale_image, cv2.MORPH_OPEN, cross_kernel_3)
+
+This function returns an array with the same shape as the initial image. 
+You can then display the image with the standard :code:`imshow` function
+of OpenCV.
+
+Results
+=======
+
+.. figure:: ../_static/images/images_opening_cross_3.png
+   :align: center
+
+   Example of opening (morphological) operation on an image (Cross kernel of size 3).
+
+
 Closing Operation
 *****************
 Definition: Closing is the reverse of opening. It first dilates the image and then erodes it. It's denoted as A • B, where A is the image and B is the structuring element (kernel).
@@ -43,3 +69,28 @@ Result: Small black regions (holes) within the objects are removed, and small ga
 
 Use Case: Filling small holes and connecting close objects.
 
+Closing with OpenCV
+===================
+
+This morphological operation require a kernel (or structuring elements) 
+to process.
+
+The :code:`morphologyEx` function performs different kinds of 
+morphological operations on the given image using a specified kernel. The
+:code:`cv2.MORPH_CLOSE` option processes a closing effect on the image.
+
+.. code-block:: python
+
+	image_opening = cv2.morphologyEx(grayscale_image, cv2.MORPH_CLOSE, cross_kernel_3)
+
+This function returns an array with the same shape as the initial image. 
+You can then display the image with the standard :code:`imshow` function
+of OpenCV.
+
+Results
+=======
+
+.. figure:: ../_static/images/images_closing_cross_3.png
+   :align: center
+
+   Example of closing (morphological) operation on an image (Cross kernel of size 3).

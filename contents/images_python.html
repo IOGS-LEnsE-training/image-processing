@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Python and images &mdash; Image processing 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/css/lense-training.css?v=a3237747" />
       <link rel="stylesheet" type="text/css" href="../_static/css/links.css?v=7a4609b2" />
@@ -189,7 +189,7 @@
 <section id="function-to-read-a-pgm-file">
 <h3>Function to read a PGM file<a class="headerlink" href="#function-to-read-a-pgm-file" title="Link to this heading"></a></h3>
 <p>As described previously, a PGM file in <strong>plain text format</strong> can be opened like a classical ASCII text file. The path to the file must be given to the function.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">read_image_PGM</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span><span class="w"> </span><span class="nf">read_image_PGM</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="linenos"> 2</span>    <span class="k">try</span><span class="p">:</span>
 <span class="linenos"> 3</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
 <span class="linenos"> 4</span>            <span class="n">lines</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -252,7 +252,7 @@
 <section id="id1">
 <h3>Function to read a PGM file<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>As described previously, a PGM file in <strong>plain text format</strong> can be opened like a classical ASCII text file. The path to the file must be given to the function. This function is nearly the same as previously.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>    <span class="k">def</span> <span class="nf">read_image_PGM</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>    <span class="k">def</span><span class="w"> </span><span class="nf">read_image_PGM</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span>            <span class="k">try</span><span class="p">:</span>
 <span class="linenos"> 4</span>                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
